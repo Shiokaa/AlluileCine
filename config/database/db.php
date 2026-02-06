@@ -1,15 +1,15 @@
 <?php
-
+include_once '../env.php';
 class Database
 {
     private static $_instance = null;
     private $pdo;
     private function __construct()
     {
-        $host = 'localhost';
-        $dbName = 'AlluileCine';
-        $username = 'root';
-        $password = '';
+        $host = $_ENV['host'];
+        $dbName = $_ENV['dbname'];
+        $username = $_ENV['username'];
+        $password = $_ENV['password'];
 
         $dsn = "mysql:host=$host;dbname=$dbName;charset=utf8mb4";
 
