@@ -37,4 +37,16 @@ class Database
     {
         return $this->pdo;
     }
+
+    //fonction vide pour éviter le clonage de l'objet
+    private function __clone()
+    {
+
+    }
+
+    //fonction vide pour éviter la désérialisation de l'objet
+    private function __wakeup()
+    {
+
+    }
 }
