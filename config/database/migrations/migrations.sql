@@ -9,7 +9,7 @@ CREATE TABLE
         email VARCHAR(255) NOT NULL UNIQUE,
         password_hash VARCHAR(255) NOT NULL,
         role ENUM ("user", "admin") DEFAULT "user",
-        avatar VARCHAR(255) NOT NULL,
+        avatar VARCHAR(255) NOT NULL DEFAULT "",
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         delete_at TIMESTAMP NULL DEFAULT NULL
