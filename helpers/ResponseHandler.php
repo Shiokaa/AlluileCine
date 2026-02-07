@@ -1,6 +1,6 @@
 <?php
 
-namespace Helpers\ResponseHandler;
+namespace Helpers;
 
 
 class ResponseHandler {
