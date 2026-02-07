@@ -1,11 +1,18 @@
 <?php
-include_once '../env.php';
+
+namespace Config\Database;
+
+use PDO;
+use Exception;
+
 class Database
 {
     private static $_instance = null;
     private $pdo;
+
     private function __construct()
     {
+        // On récupère les variables d'environnements qui ont été chargés
         $host = $_ENV['host'];
         $dbName = $_ENV['dbname'];
         $username = $_ENV['username'];
@@ -26,6 +33,7 @@ class Database
             die("Erreur de connexion à la base de données : " . $e->getMessage());
         }
     }
+
     public static function getInstance()
     {
         if (self::$_instance === null) {
@@ -33,6 +41,7 @@ class Database
         }
         return self::$_instance;
     }
+
     public function getConnection()
     {
         return $this->pdo;
@@ -45,7 +54,7 @@ class Database
     }
 
     //fonction vide pour éviter la désérialisation de l'objet
-    private function __wakeup()
+    public function __wakeup()
     {
 
     }

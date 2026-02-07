@@ -1,5 +1,8 @@
 <?php
 
+namespace Helpers\ResponseHandler;
+
+
 class ResponseHandler {
 
     /** Méthode d'automatisation d'une réponse

@@ -1,6 +1,13 @@
 <?php
 
+namespace App\Models;
+
+use Config\Database\Database;
+use Helpers\ResponseHandler;
+
 class User {
+
+    private $pdo;
 
     /** * Constructeur de la class User
      */
@@ -16,7 +23,7 @@ class User {
     * @param string $password Mot de passe déjà haché.
     * * @return array Retourne la réponse
     */
-    public function createUser(string $fullname, string $email, string $passwordHash): array
+    public function create(string $fullname, string $email, string $passwordHash): array
     {
         // Création de la query pour insérer un utilisateur dans la base de donnée
         $sql = 'INSERT INTO users (fullname, email, password_hash) VALUES (?, ?, ?)';

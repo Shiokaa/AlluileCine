@@ -1,0 +1,21 @@
+{
+  "name": "shioka/alluile-cine",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Shiokaa",
+      "email": "tom.amaru09@gmail.com"
+    }
+  ],
+  "require": {
+    "vlucas/phpdotenv": "^5.6",
+    "phroute/phroute": "^2.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Config\\": "config/",
+      "Helpers\\": "helpers/"
+    }
+  }
+}
