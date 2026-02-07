@@ -28,7 +28,7 @@ class UserController {
      */
     public function handleRegister()
     {
-
+        
     }
 }
 
