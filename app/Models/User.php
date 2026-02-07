@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Config\Database\Database;
 use Helpers\ResponseHandler;
+use PDOException;
 
 class User {
 
