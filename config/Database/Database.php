@@ -3,7 +3,7 @@
 namespace Config\Database;
 
 use PDO;
-use Exception;
+use PDOException;
 
 class Database
 {
