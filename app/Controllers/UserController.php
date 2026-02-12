@@ -4,11 +4,12 @@ namespace App\Controllers;
 
 use App\Models\User;
 use Config\Database\Database;
-use Helpers\ResponseHandler;
+use App\Middlewares\AuthMiddleware;
 
 class UserController {
 
     private $userModel;
+    private $authMiddleware;
 
     /** Constructeur de la class UserController
      */
@@ -16,12 +17,16 @@ class UserController {
     {
         $db = Database::getInstance()->getConnection();
         $this->userModel = new User($db); 
+        $this->authMiddleware = new AuthMiddleware();
     }
 
     /** Permet d'afficher la page de register
      */
     public function showRegisterForm()
     {
+        // Vérification avec la middleware que l'utilsateur soit pas connecté
+        $this->authMiddleware->requireGuest();
+        // On envoie la view
         include __DIR__ . "/../Views/register.php";
     }
 
@@ -32,6 +37,13 @@ class UserController {
         // On vérifie si les données du formulaire sont bien remplies
         if (empty($_POST['firstname']) || empty($_POST['lastname']) || empty($_POST['email']) || empty($_POST['password'])) {
             $_SESSION['error'] = "Veuillez remplir tous les champs !";
+            header('Location: /register');
+            exit;
+        }
+
+        // On vérifie que le mot de passe soit assez long
+        if (strlen($_POST['password']) <= 6) {
+            $_SESSION['error'] = "Mot de passe trop court (6 caractères minimum)";
             header('Location: /register');
             exit;
         }
@@ -47,6 +59,15 @@ class UserController {
         if ($response['status']) {
             header('Location: /login'); // Rediriger vers la connexion en cas de succès
             exit;
+        } else {
+            // Si code 1062 alors email déjà utilisé sinon c'est une erreur serveur inconnu
+            if ($response['message'] = "1062") {
+                $_SESSION['error'] = "Email déjà utilisé"; // !!!!!!!!! Très dangereux à remplacer par un envoie d'email
+            } else {
+                $_SESSION['error'] = "Erreur serveur inattendu";
+            }
+            header('Location: /register'); // Rediriger vers l'inscription en cas d'erreur
+            exit;
         }
     } 
 
@@ -54,6 +75,9 @@ class UserController {
      */
     public function showLoginForm()
     {
+        // Vérification avec la middleware que l'utilsateur soit pas connecté
+        $this->authMiddleware->requireGuest();
+        // On envoie la view
         include __DIR__ . "/../Views/login.php";
     }
 
@@ -77,7 +101,12 @@ class UserController {
 
         // On vérifie le status de la réponse et la validité du mot de passe envoyé par l'utilisateur
         if ($response['status'] && password_verify($passwordInput, $response['data']['password_hash'])){
-            // Utilisateur connecté ajout de l'utilisateur à la session à faire plus tard pour l'instant redirection vers /
+            $_SESSION['user'] = [
+                'userId' => $response['data']['id'],
+                'username' => $response['data']['fullname'],
+                'email' => $response['data']['email'],
+                'role' => $response['data']['role'],
+            ];
             header('Location: /');
             exit;
         } else {
