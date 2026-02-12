@@ -12,5 +12,8 @@
         </div>
 
         <button type="submit">Se connecter</button>
+        <?php if (isset($_SESSION['error'])): ?>
+            <p><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
+        <?php endif; ?>
     </form>
 </div>
