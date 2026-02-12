@@ -10,6 +10,7 @@ $router->get("/register", ['App\Controllers\UserController','showRegisterForm'])
 $router->post("/register", ['App\Controllers\UserController','handleRegister']);
 $router->get("/login", ['App\Controllers\UserController', 'showLoginForm']);
 $router->post("/login", ['App\Controllers\UserController','handleLogin']);
+$router->get("/logout", ['App\Controllers\UserController', 'handleLogout']);
 /* ------------------------------- */
 
 /* -------- Routage home --------- */

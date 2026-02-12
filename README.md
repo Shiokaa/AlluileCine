@@ -34,6 +34,9 @@ php -S localhost:8080 -t public
 - Lancement du projet via l'index.php dans le dossier public
 - Un ResponseHandler pour formatter les réponses facilement
 - Initialisation de la session lorsque l'utilisateur se login, ainsi qu'une session qui permet d'enregistrer les erreurs etc lorsque l'utilisateur n'est pas connecté
+- Page d'accueil
+- Style global du site web
+- Logout de l'utilisateur avec suppression des variables de session ainsi que la destruction de la session
 
 ⏳ A faire ensuite
 

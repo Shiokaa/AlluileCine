@@ -115,6 +115,24 @@ class UserController {
             exit;
         }
     }
+
+    /** Déconnecte l'utilisateur en supprimant les variables de session et en détruisant la session
+     */
+    public function handleLogout()
+    {
+        // Renvoie l'utilisateur vers le /login s'il essaye d'accéder à /logout sans être connecté
+        $this->authMiddleware->requireAuth();
+
+        // Supprime les variables de session
+        session_unset();
+
+        // Détruit la session
+        session_destroy();
+        
+        //Renvoie vers la page /login et quitte la fonction
+        header('Location: /login');
+        exit;
+    }
 }
 
 ?>
