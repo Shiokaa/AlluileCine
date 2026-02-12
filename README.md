@@ -33,8 +33,11 @@ php -S localhost:8080 -t public
 - Connexion à la BDD via pattern singleton
 - Lancement du projet via l'index.php dans le dossier public
 - Un ResponseHandler pour formatter les réponses facilement
+- Initialisation de la session lorsque l'utilisateur se login, ainsi qu'une session qui permet d'enregistrer les erreurs etc lorsque l'utilisateur n'est pas connecté
 
 ⏳ A faire ensuite
 
-- Initialisation de la session lorsque l'utilisateur se login, ainsi qu'une session qui permet d'enregistrer les erreurs etc lorsque l'utilisateur n'est pas connecté
+- Header / Footer
+- Page d'accueil
+- Mise en place du model pour les films
 - Rajouter des commentaires pour affiner la doc

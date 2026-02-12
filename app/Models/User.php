@@ -42,8 +42,8 @@ class User {
             return ResponseHandler::format(true, 'Succès', $id);
             
         } catch (PDOException $e) {
-            // Retourne la réponse à false avec le message d'erreur
-            return ResponseHandler::format(false, 'Erreur : ' . $e->getMessage());
+            // Retourne la réponse à false avec le code en erreur
+            return ResponseHandler::format(false, 'Erreur : ' . $e->getCode());
         }
     }
 
