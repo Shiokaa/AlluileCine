@@ -12,6 +12,10 @@ $router->get("/login", ['App\Controllers\UserController', 'showLoginForm']);
 $router->post("/login", ['App\Controllers\UserController','handleLogin']);
 /* ------------------------------- */
 
+/* -------- Routage home --------- */
+$router->get("/", ['App\Controllers\HomeController', 'showHomePage']);
+/* ------------------------------- */
+
 // On renvoie le router
 return $router;
 ?>
