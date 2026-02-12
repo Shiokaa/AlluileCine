@@ -1,3 +1,5 @@
+<?php include __DIR__ . '/partials/header.php'; ?>
+
 <div class="register-container">
     <h2>Créer un compte</h2>
     <form action="/register" method="POST">
@@ -23,7 +25,9 @@
 
         <button type="submit">S'inscrire</button>
         <?php if (isset($_SESSION['error'])): ?>
-            <p><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
+            <p class="error-message"><?php echo htmlspecialchars($_SESSION['error']); unset($_SESSION['error']); ?></p>
         <?php endif; ?>
     </form>
 </div>
+
+<?php include __DIR__ . '/partials/footer.php'; ?>
