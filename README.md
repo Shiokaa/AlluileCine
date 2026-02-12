@@ -37,7 +37,5 @@ php -S localhost:8080 -t public
 
 ⏳ A faire ensuite
 
-- Header / Footer
-- Page d'accueil
 - Mise en place du model pour les films
 - Rajouter des commentaires pour affiner la doc
