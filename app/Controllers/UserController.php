@@ -115,6 +115,15 @@ class UserController {
             exit;
         }
     }
+
+    public function handleLogout()
+    {
+        $this->authMiddleware->requireAuth();
+        session_unset();
+        session_destroy();
+        header('Location: /login');
+        exit;
+    }
 }
 
 ?>
