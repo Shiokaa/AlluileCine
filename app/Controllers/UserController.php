@@ -12,6 +12,7 @@ class UserController {
     private $authMiddleware;
 
     /** Constructeur de la class UserController
+     * Initialise la connexion à la base de données, le modèle User ainsi que le middleware d'authentification
      */
     public function __construct() 
     {
