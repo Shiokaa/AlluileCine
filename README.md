@@ -37,8 +37,16 @@ php -S localhost:8080 -t public
 - Page d'accueil
 - Style global du site web
 - Logout de l'utilisateur avec suppression des variables de session ainsi que la destruction de la session
+- Model pour les films
+- Affichage des films dans la home page
 
 ⏳ A faire ensuite
 
-- Mise en place du model pour les films
+- Page pour 1 film en question
+- Page de profil pour l'utilisateur
+- Page de réservation
+- Amélioration de la BDD pour gérer les places par rapport aux salles
+- Dashboard ADMIN
+- Expiration de la session après un certain temps
+- Option "se souvenir de moi" lors de la connexion
 - Rajouter des commentaires pour affiner la doc
