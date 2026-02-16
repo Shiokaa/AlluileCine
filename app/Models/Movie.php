@@ -42,6 +42,26 @@ class Movie {
         }
     }
 
+    public function findById(int $id) : array
+    {
+        $sql = 'SELECT * FROM movies WHERE id = ?';
+        
+        try {
+            
+            $statement = $this->pdo->prepare($sql);
+
+            $statement->execute([$id]);
+
+            $movie = $statement->fetch();
+
+            return ResponseHandler::format('true', 'Succès', $movie);
+        }catch(PDOException $e) {
+            // Retourne la réponse à false avec le message d'erreur
+            return ResponseHandler::format('false', $e->getMessage());
+        }
+    }
+
+
 }
 
 ?>
