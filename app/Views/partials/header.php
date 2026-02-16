@@ -19,7 +19,7 @@
             <nav class="main-nav">
                 <ul>
                     <li><a href="/">Accueil</a></li>
-                    <?php if (isset($_SESSION['user'])): ?>
+                    <?php if (isset($_SESSION['userId'])): ?>
                         <li><a href="/reservations">Mes réservations</a></li>
                         <li><a href="/account">Mon compte</a></li>
                         <li><a href="/logout" class="btn-logout">Déconnexion</a></li>
