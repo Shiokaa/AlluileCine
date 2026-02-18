@@ -14,6 +14,10 @@ $router->get("/logout", ['App\Controllers\UserController', 'handleLogout']);
 $router->get("/account", ['App\Controllers\UserController', 'showAccountPage']);
 /* ------------------------------- */
 
+/* -------- Routage Movie --------- */
+$router->get("/movies/{id}", ['App\Controllers\MovieController', 'showMoviePage']);
+/* ------------------------------- */
+
 /* -------- Routage home --------- */
 $router->get("/", ['App\Controllers\HomeController', 'showHomePage']);
 /* ------------------------------- */
