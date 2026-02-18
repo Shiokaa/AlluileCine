@@ -13,6 +13,10 @@ $router->post("/login", ['App\Controllers\UserController','handleLogin']);
 $router->get("/logout", ['App\Controllers\UserController', 'handleLogout']);
 /* ------------------------------- */
 
+/* -------- Routage Movie --------- */
+$router->get("/movies/{id}", ['App\Controllers\MovieController', 'showMoviePage']);
+/* ------------------------------- */
+
 /* -------- Routage home --------- */
 $router->get("/", ['App\Controllers\HomeController', 'showHomePage']);
 /* ------------------------------- */
