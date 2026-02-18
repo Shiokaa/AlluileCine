@@ -188,7 +188,7 @@ VALUES
     -- Film 2 joue dans la Salle 2 (plus petite)
     (2, 2, '2023-11-25 20:30:00'),
     -- Film 3 joue dans la Salle VIP
-    (3, 3, '2023-11-26 21:00:00', '2023-11-26');
+    (3, 3, '2023-11-26 21:00:00');
 
 -- Jean réserve pour la Session 1 (Salle 1) -> Il prend le siège 1 (qui est dans la salle 1)
 INSERT INTO
