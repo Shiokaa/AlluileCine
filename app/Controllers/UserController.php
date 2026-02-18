@@ -102,12 +102,7 @@ class UserController {
 
         // On vérifie le status de la réponse et la validité du mot de passe envoyé par l'utilisateur
         if ($response['status'] && password_verify($passwordInput, $response['data']['password_hash'])){
-            $_SESSION['user'] = [
-                'userId' => $response['data']['id'],
-                'username' => $response['data']['fullname'],
-                'email' => $response['data']['email'],
-                'role' => $response['data']['role'],
-            ];
+            $_SESSION['userId'] = $response['data']['id'];
             header('Location: /');
             exit;
         } else {
@@ -133,6 +128,17 @@ class UserController {
         //Renvoie vers la page /login et quitte la fonction
         header('Location: /login');
         exit;
+    }
+
+    public function showAccountPage()
+    {
+        $this->authMiddleware->requireAuth();
+
+        $response = $this->userModel->findById($_SESSION['userId']);
+
+        $user = $response['data'];
+
+        include_once __DIR__ . "/../Views/account.php";
     }
 }
 

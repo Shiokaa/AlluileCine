@@ -9,7 +9,7 @@ class AuthMiddleware {
      */
     public function requireAuth() 
     {
-        if (!isset($_SESSION['user'])) {
+        if (!isset($_SESSION['userId'])) {
             $_SESSION['error'] = "Vous devez être connecté pour accéder à cette page.";
             header('Location: /login');
             exit;
@@ -21,7 +21,7 @@ class AuthMiddleware {
      */
     public function requireGuest()
     {
-        if (isset($_SESSION['user'])) {
+        if (isset($_SESSION['userId'])) {
             header('Location: /');
             exit;
         }
