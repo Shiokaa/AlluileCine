@@ -29,4 +29,13 @@ class MovieController {
     include __DIR__ . "/../Views/movie.php";
     }
 
+    public function handleMovieDelete(int $id)
+    {
+        $this->authMiddleware->requireAdmin();
+
+        $this->movieModel->delete($id);
+
+        header('Location: /dashboard');
+        exit;
+    }
 }

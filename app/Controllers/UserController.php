@@ -141,6 +141,16 @@ class UserController {
 
         include_once __DIR__ . "/../Views/account.php";
     }
+
+    public function handleUserDelete(int $id)
+    {
+        $this->authMiddleware->requireAdmin();
+
+        $this->userModel->delete($id);
+
+        header('Location: /dashboard');
+        exit;
+    }
 }
 
 ?>
