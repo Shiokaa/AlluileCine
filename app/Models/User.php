@@ -96,4 +96,23 @@ class User {
             return ResponseHandler::format(false,'Erreur : '. $e->getMessage());
         }
     }
+     public function findAll(int $id): array
+    {
+        // Création de la query pour récupérer toutes les données d'un utilisateur via son id
+        $sql = "SELECT * FROM users";
+
+        try {
+            // Prépare la requête
+            $statement = $this->pdo->prepare($sql);
+
+            // Exécute la requête préparé via les données envoyées
+            $statement->execute([$id]);
+
+            // Retourne la réponse à true avec une message de succès ainsi que les données de l'utilisateur
+            return ResponseHandler::format(true, 'Succès', $statement->fetch());
+        } catch (PDOException $e) {
+            // Retourne la réponse à false avec une message d'erreur
+            return ResponseHandler::format(false,'Erreur : '. $e->getMessage());
+        }
+    }
 }

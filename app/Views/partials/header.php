@@ -19,6 +19,9 @@
             <nav class="main-nav">
                 <ul>
                     <li><a href="/">Accueil</a></li>
+                    <?php if (isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'admin'): ?>
+                        <li><a href="/Dashboard">Dashboard</a></li>
+                    <?php endif; ?>
                     <?php if (isset($_SESSION['userId'])): ?>
                         <li><a href="/reservations">Mes réservations</a></li>
                         <li><a href="/account">Mon compte</a></li>

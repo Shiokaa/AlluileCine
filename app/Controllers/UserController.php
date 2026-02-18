@@ -103,6 +103,7 @@ class UserController {
         // On vérifie le status de la réponse et la validité du mot de passe envoyé par l'utilisateur
         if ($response['status'] && password_verify($passwordInput, $response['data']['password_hash'])){
             $_SESSION['userId'] = $response['data']['id'];
+            $_SESSION['userRole'] = $response['data']['role'];
             header('Location: /');
             exit;
         } else {
