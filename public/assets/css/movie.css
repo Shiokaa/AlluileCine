@@ -1,120 +1,267 @@
 /* ===== MOVIE DETAIL PAGE ===== */
 .movie-detail-card {
-    display: flex;
-    background-color: #16213e;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    align-items: stretch;
-    /* Keep stretch so background fills */
+  display: flex;
+  background-color: #16213e;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  align-items: stretch;
 }
 
 .movie-detail-poster {
-    flex: 0 0 35%;
-    /* Reduced width slightly */
-    position: relative;
-    min-height: 400px;
-    /* Ensure some height */
+  flex: 0 0 35%;
+  position: relative;
+  min-height: 400px;
 }
 
 .movie-detail-poster img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* Cover is safer for layout consistency, prevents weird gaps */
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .movie-detail-info {
-    flex: 1;
-    padding: 3rem;
-    display: flex;
-    flex-direction: column;
+  flex: 1;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .movie-detail-title {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .movie-detail-meta {
-    display: flex;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-    align-items: center;
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  align-items: center;
 }
 
 .movie-detail-meta .movie-genre {
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    background-color: rgba(233, 69, 96, 0.1);
-    border: 1px solid #e94560;
-    border-radius: 50px;
-    color: #e94560;
-    margin-bottom: 0;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: rgba(233, 69, 96, 0.1);
+  border: 1px solid #e94560;
+  border-radius: 50px;
+  color: #e94560;
+  margin-bottom: 0;
 }
 
 .movie-detail-meta .movie-duration {
-    font-size: 1rem;
-    color: #a0a0a0;
-    margin-bottom: 0;
+  font-size: 1rem;
+  color: #a0a0a0;
+  margin-bottom: 0;
 }
 
 .movie-description {
-    margin-bottom: 3rem;
+  margin-bottom: 3rem;
 }
 
 .movie-description h2 {
-    font-size: 1.5rem;
-    color: #e94560;
-    margin-bottom: 1rem;
-    border-left: 4px solid #e94560;
-    padding-left: 1rem;
+  font-size: 1.5rem;
+  color: #e94560;
+  margin-bottom: 1rem;
+  border-left: 4px solid #e94560;
+  padding-left: 1rem;
 }
 
 .movie-description p {
-    color: #e0e0e0;
-    line-height: 1.8;
-    font-size: 1.1rem;
+  color: #e0e0e0;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.movie-start-time {
+  margin-bottom: 2rem;
+}
+
+.movie-start-time h3 {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  border-bottom: 2px solid #e94560;
+  padding-bottom: 0.2rem;
+}
+
+.sessions-list,
+.sessions-day-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.date-carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: #e94560 transparent;
+}
+
+.date-card {
+  min-width: 70px;
+  height: 80px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.date-card:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.date-card.active {
+  background-color: #e94560;
+  border-color: #e94560;
+  transform: scale(1.05);
+}
+
+.date-card .day-name {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+  color: #a0a0a0;
+}
+
+.date-card.active .day-name {
+  color: #fff;
+}
+
+.date-card .day-number {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.session-item {
+  background-color: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.session-item i {
+  color: #e94560;
+}
+
+.session-item:hover {
+  background-color: rgba(233, 69, 96, 0.15);
+  border-color: #e94560;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(233, 69, 96, 0.2);
+  cursor: pointer;
+}
+
+.session-item.selected {
+  background-color: rgba(233, 69, 96, 0.25);
+  border-color: #e94560;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(233, 69, 96, 0.3);
+  transform: translateY(-2px);
+}
+
+.session-item.selected i {
+  color: #fff;
+}
+
+/* ===== BOOKING HINT & SELECTION ===== */
+.booking-hint {
+  color: #a0a0a0;
+  font-size: 0.9rem;
+  margin-top: 0.8rem;
+}
+
+.booking-hint.shake {
+  animation: shake 0.5s ease-in-out;
+  color: #e94560;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.booking-selection {
+  color: #4caf50;
+  font-size: 0.95rem;
+  margin-top: 0.8rem;
+}
+
+.booking-selection i {
+  margin-right: 0.3rem;
+}
+
+/* ===== BOOKING BUTTON STATES ===== */
+.movie-detail-actions .btn-book {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transition: all 0.3s ease;
+}
+
+.movie-detail-actions .btn-book.active {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .movie-detail-actions {
-    margin-top: auto;
+  margin-top: auto;
 }
 
 .movie-detail-actions .btn-book {
-    display: inline-flex;
-    width: auto;
-    padding: 1rem 3rem;
-    font-size: 1.2rem;
+  display: inline-flex;
+  width: auto;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-    .movie-detail-card {
-        flex-direction: column;
-    }
+  .movie-detail-card {
+    flex-direction: column;
+  }
 
-    .movie-detail-poster {
-        flex: none;
-        max-width: 100%;
-        height: 400px;
-    }
+  .movie-detail-poster {
+    flex: none;
+    max-width: 100%;
+    height: 400px;
+  }
 
-    .movie-detail-info {
-        padding: 2rem;
-    }
+  .movie-detail-info {
+    padding: 2rem;
+  }
 
-    .movie-detail-title {
-        font-size: 2rem;
-    }
+  .movie-detail-title {
+    font-size: 2rem;
+  }
 
-    .movie-detail-meta {
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
+  .movie-detail-meta {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 }
