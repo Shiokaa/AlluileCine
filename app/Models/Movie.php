@@ -60,7 +60,26 @@ class Movie {
             return ResponseHandler::format('false', $e->getMessage());
         }
     }
+    public function delete(int $id): array
+    {
+        $sql = "DELETE FROM movies WHERE id = ?";
 
+        try {
+
+            $statement = $this->pdo->prepare($sql);
+
+            $statement->execute([$id]);
+
+            return ResponseHandler::format(true, 'Succès', $statement->fetch());
+
+        }
+        catch (PDOException $e) {
+            // Retourne la réponse à false avec une message d'erreur
+            return ResponseHandler::format(false, 'Erreur : ' . $e->getMessage());
+        }
+
+
+    }
 
 }
 

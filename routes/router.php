@@ -12,12 +12,12 @@ $router->get("/login", ['App\Controllers\UserController', 'showLoginForm']);
 $router->post("/login", ['App\Controllers\UserController','handleLogin']);
 $router->get("/logout", ['App\Controllers\UserController', 'handleLogout']);
 $router->get("/account", ['App\Controllers\UserController', 'showAccountPage']);
-$router->get("/delete/user/{id}", ['App\Controllers\DashboardController','handleUserDelete']);
+$router->get("/delete/user/{id}", ['App\Controllers\UserController','handleUserDelete']);
 /* ------------------------------- */
 
 /* -------- Routage Movie --------- */
 $router->get("/movies/{id}", ['App\Controllers\MovieController', 'showMoviePage']);
-$router->get("/delete/movie/{id}", ['App\Controllers\DashboardController','handleMovieDelete']);
+$router->get("/delete/movie/{id}", ['App\Controllers\MovieController','handleMovieDelete']);
 /* ------------------------------- */
 
 /* -------- Routage home --------- */

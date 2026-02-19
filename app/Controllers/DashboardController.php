@@ -3,41 +3,42 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Models\Movie;
 use Config\Database\Database;
 use App\Middlewares\AuthMiddleware;
 
-class DashboardController {
-    
+class DashboardController
+{
+
     private $movieModel;
     private $userModel;
     private $authMiddleware;
 
-    public function __construct(){
+    public function __construct()
+    {
         $db = Database::getInstance()->getConnection();
-        $this->movieModel = new Movie($db); 
-        $this->userModel = new User($db); 
+        $this->movieModel = new Movie($db);
+        $this->userModel = new User($db);
         $this->authMiddleware = new AuthMiddleware();
     }
 
-    public function showDashboardPage()
+    public function showDashboard()
     {
-        
+
         $this->authMiddleware->requireAdmin();
 
         $responseMovie = $this->movieModel->findAll();
         $movie = $responseMovie['data'];
 
         $responseUser = $this->userModel->findAll();
-        $user = $responseUser['data']; 
+        $user = $responseUser['data'];
 
-    include __DIR__ . "/../Views/Dashboard.php";
+        include __DIR__ . "/../Views/dashboard.php";
     }
 
+
+
     
-
-    public function deleMovie() {} 
-
-    public function addUser() {}
 
 
 }

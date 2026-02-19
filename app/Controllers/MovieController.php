@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Movie;
 use Config\Database\Database;
+use App\Middlewares\AuthMiddleware;
 
 class MovieController {
 
@@ -13,6 +14,7 @@ class MovieController {
     public function __construct(){
         $db = Database::getInstance()->getConnection();
         $this->movieModel = new Movie($db); 
+        $this->authMiddleware = new AuthMiddleware();
     }
 
     public function showMoviePage(int $id)
