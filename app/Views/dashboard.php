@@ -4,7 +4,7 @@
 <div class="dashboard-container">
     <div class="dashboard-header">
         <h1 class="dashboard-title">Dashboard</h1>
-        <a href="/movies/add" class="btn-add-movie">
+        <a href="/dashboard/addMovie" class="btn-add-movie">
             <i class="fas fa-plus"></i> Ajouter un film
         </a>
     </div>
@@ -36,7 +36,7 @@
                                     </button>
                                     
                                     <!-- Bouton Delete Movie -->
-                                    <a href="/delete/movie/<?= $m['id'] ?>" class="btn-action btn-delete-card" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce film ?');">
+                                    <a href="/dashboard/delete/movie/<?= $m['id'] ?>" class="btn-action btn-delete-card" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce film ?');">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </div>
@@ -73,7 +73,7 @@
                                 </td>
                                 <td><?= htmlspecialchars($u['email']) ?></td>
                                 <td>
-                                    <a href="/delete/user/<?= $u['id'] ?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">
+                                    <a href="/dashboard/delete/user/<?= $u['id'] ?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">
                                         <i class="fas fa-trash"></i> Supprimer
                                     </a>
                                 </td>

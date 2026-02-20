@@ -77,7 +77,28 @@ class Movie {
             // Retourne la réponse à false avec une message d'erreur
             return ResponseHandler::format(false, 'Erreur : ' . $e->getMessage());
         }
+    }
+    public function create(string $title,string $description,string $genre,string $director,string $casting,string $duration,string $cover_image,string $release_date) {
 
+        $sql = 'INSERT INTO users (title, description, genre, director, genre, director, casting, duration, cover_image, release_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+
+        try {
+            // Prépare la requête
+            $statement = $this->pdo->prepare($sql);
+
+            // Exécute la requête préparé via les données envoyées
+            $statement->execute([$title, $description, $genre, $director, $casting, $duration, $cover_image, $release_date ]);
+
+            // Récupère le dernier ID inséré
+            $id = $this->pdo->lastInsertId();
+
+            // Retourne la réponse à true avec une message de succès
+            return ResponseHandler::format(true, 'Succès', $id);
+        }catch (PDOException $e) {
+            
+            // Retourne la réponse à false avec le code en erreur
+            return ResponseHandler::format(false, 'Erreur : ' . $e->getCode());
+        }
 
     }
 
