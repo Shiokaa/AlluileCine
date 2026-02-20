@@ -12,7 +12,7 @@
         <?php if ($response['status']): ?>
         <?php foreach($movies as $movie): ?>
             <div class="movie-card">
-                <img src="<?= "/assets/img/movies/". $movie['cover_image'] ?>" alt="<?= $movie['title'] ?>" class="movie-poster">
+                <img src="<?= $movie['cover_image'] ?>" alt="<?= $movie['title'] ?>" class="movie-poster">
                 <div class="movie-info">
                     <h3 class="movie-title"><?= $movie['title'] ?></h3>
                     <div class="movie-genre"><?= $movie['genre'] ?></div>

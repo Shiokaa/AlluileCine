@@ -80,7 +80,7 @@ class Movie {
     }
     public function create(string $title,string $description,string $genre,string $director,string $casting,string $duration,string $cover_image,string $release_date) {
 
-        $sql = 'INSERT INTO users (title, description, genre, director, genre, director, casting, duration, cover_image, release_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        $sql = 'INSERT INTO movies (title, description, genre, director, casting, duration, cover_image, release_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 
         try {
             // Prépare la requête
@@ -95,9 +95,9 @@ class Movie {
             // Retourne la réponse à true avec une message de succès
             return ResponseHandler::format(true, 'Succès', $id);
         }catch (PDOException $e) {
-            
+
             // Retourne la réponse à false avec le code en erreur
-            return ResponseHandler::format(false, 'Erreur : ' . $e->getCode());
+            return ResponseHandler::format(false, 'Erreur : ' . $e->getMessage());
         }
 
     }

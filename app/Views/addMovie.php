@@ -16,43 +16,6 @@
             <input type="text" id="title" name="title" required placeholder="Ex: Inception">
         </div>
 
-        <div class="form-group">
-            <label for="description">Description (Synopsis)</label>
-            <textarea id="description" name="description" required placeholder="Résumez l'histoire du film..."></textarea>
-        </div>
-
-        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-            <div>
-                <label for="genre">Genre</label>
-                <input type="text" id="genre" name="genre" required placeholder="Ex: Science-fiction">
-            </div>
-            <div>
-                <label for="director">Réalisateur</label>
-                <input type="text" id="director" name="director" required placeholder="Ex: Christopher Nolan">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="casting">Casting (Acteurs principaux)</label>
-            <input type="text" id="casting" name="casting" placeholder="Ex: Leonardo DiCaprio, Joseph Gordon-Levitt...">
-        </div>
-
-        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-            <div>
-                <label for="duration">Durée (en minutes)</label>
-                <input type="number" id="duration" name="duration" required min="1" placeholder="Ex: 148">
-            </div>
-            <div>
-                <label for="release_date">Date de sortie</label>
-                <input type="date" id="release_date" name="release_date" required>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="cover_image">Affiche du film</label>
-            <input type="file" id="cover_image" name="cover_image" accept="image/*" required style="padding: 0.5rem; background-color: #0f3460;">
-        </div>
-
         <button type="submit" style="background: linear-gradient(135deg, #e94560 0%, #0f3460 100%); color: white; border: none; padding: 1rem; font-weight: bold; border-radius: 8px; cursor: pointer; margin-top: 1rem; width: 100%;">Ajouter le film</button>
         
         <div style="text-align: center; margin-top: 1rem;">

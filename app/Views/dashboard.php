@@ -23,7 +23,7 @@
                             <div class="movie-poster-container">
                                 <?php 
                                     // Utilisation de la cover image comme sur la home page
-                                    $poster = !empty($m['cover_image']) ? '/assets/img/movies/' . $m['cover_image'] : '/assets/img/default-movie.jpg'; 
+                                    $poster = !empty($m['cover_image']) ? $m['cover_image'] : '/assets/img/default-movie.jpg'; 
                                 ?>
                                 <img src="<?= htmlspecialchars($poster) ?>" alt="<?= htmlspecialchars($m['title']) ?>" class="movie-poster">
                             </div>

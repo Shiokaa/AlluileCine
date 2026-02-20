@@ -5,16 +5,19 @@ namespace App\Controllers;
 use App\Models\Movie;
 use Config\Database\Database;
 use App\Middlewares\AuthMiddleware;
+use App\Services\TmdbService;
 
 class MovieController {
 
     private $movieModel;
     private $authMiddleware;
+    private $tmdbService;
 
     public function __construct(){
         $db = Database::getInstance()->getConnection();
         $this->movieModel = new Movie($db); 
         $this->authMiddleware = new AuthMiddleware();
+        $this->tmdbService = new TmdbService();
     }
 
     public function showMoviePage(int $id)
@@ -51,38 +54,40 @@ class MovieController {
     public function handleAddMovie()
     {
         // On vérifie si les données du formulaire sont bien remplies
-        if (empty($_POST['firstname']) || empty($_POST['lastname']) || empty($_POST['email']) || empty($_POST['password'])) {
+        if (empty($_POST['title'])) {
             $_SESSION['error'] = "Veuillez remplir tous les champs !";
-            header('Location: /register');
+            header('Location: /dashboard/addMovie');
             exit;
         }
 
-        // On vérifie que le mot de passe soit assez long
-        if (strlen($_POST['password']) <= 6) {
-            $_SESSION['error'] = "Mot de passe trop court (6 caractères minimum)";
-            header('Location: /register');
+        $titre = $_POST['title'];
+       
+        $data = $this->tmdbService->getFullMovieDetails($titre); 
+
+        if ($data) {
+            $response = $this->movieModel->create(
+                $data['title'],         
+                $data['description'],    
+                $data['genres'],         
+                $data['director'],       
+                $data['casting'],        
+                (string)$data['duration'], 
+                $data['cover_image'],    
+                $data['release_date']    
+            );
+        } else {
+            $_SESSION['error'] = "Film inexistant";
+            header('Location: /dashboard/addMovie');
             exit;
         }
-
-        // On récupère les données de l'utilisateur via la variable global POST
-        $fullname = $_POST['lastname'] . " " . $_POST['firstname'];
-        $email = $_POST['email'];
-        $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-        // On envoie les données de l'utilisateur au model
-        $response = $this->userModel->create($fullname, $email, $passwordHash);
 
         if ($response['status']) {
-            header('Location: /login'); // Rediriger vers la connexion en cas de succès
+            header('Location: /dashboard');
             exit;
         } else {
-            // Si code 1062 alors email déjà utilisé sinon c'est une erreur serveur inconnu
-            if ($response['message'] = "1062") {
-                $_SESSION['error'] = "Email déjà utilisé"; // !!!!!!!!! Très dangereux à remplacer par un envoie d'email
-            } else {
-                $_SESSION['error'] = "Erreur serveur inattendu";
-            }
-            header('Location: /register'); // Rediriger vers l'inscription en cas d'erreur
+            $_SESSION['error'] = "Erreur serveur inattendu";
+            $_SESSION['message'] = $response['message'];
+            header('Location: /dashboard'); 
             exit;
         }
     } 

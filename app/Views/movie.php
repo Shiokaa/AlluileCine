@@ -3,7 +3,7 @@
 <main class="main-content">
     <div class="movie-detail-card">
         <div class="movie-detail-poster">
-            <img src="/assets/img/movies/<?= htmlspecialchars($movie['cover_image']) ?>" alt="<?= htmlspecialchars($movie['title']) ?>">
+            <img src="<?= htmlspecialchars($movie['cover_image']) ?>" alt="<?= htmlspecialchars($movie['title']) ?>">
         </div>
         <div class="movie-detail-info">
             <h1 class="movie-detail-title"><?= htmlspecialchars($movie['title']) ?></h1>

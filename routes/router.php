@@ -19,6 +19,7 @@ $router->get("/dashboard/delete/user/{id}", ['App\Controllers\UserController','h
 $router->get("/movies/{id}", ['App\Controllers\MovieController', 'showMoviePage']);
 $router->get("/dashboard/delete/movie/{id}", ['App\Controllers\MovieController','handleMovieDelete']);
 $router->get("/dashboard/addMovie", ['App\Controllers\MovieController','showAddMovieForm']);
+$router->post("/dashboard/addMovie", ['App\Controllers\MovieController','handleAddMovie']);
 /* ------------------------------- */
 
 /* -------- Routage home --------- */
