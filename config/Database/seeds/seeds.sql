@@ -112,3 +112,104 @@ VALUES
         'david.jpg',
         '2025-01-01'
     );
+
+INSERT INTO
+    users (fullname, email, password_hash, role)
+VALUES
+    (
+        'Admin Alluile',
+        'admin@alluilecine.fr',
+        'password123',
+        'admin'
+    ),
+    (
+        'Jean Dupont',
+        'jean.dupont@email.com',
+        'password123',
+        'user'
+    ),
+    (
+        'Sophie Martin',
+        'sophie.martin@email.com',
+        'password123',
+        'user'
+    ),
+    (
+        'Lucas Bernard',
+        'lucas.bernard@email.com',
+        'password123',
+        'user'
+    );
+
+INSERT INTO
+    rooms (name, capacity)
+VALUES
+    ('Salle 1 - Le Grand Rex', 50),
+    ('Salle 2 - Jupiter', 30),
+    ('Salle 3 - VIP Lounge', 10);
+
+-- Sièges pour la Salle 1 (ID 1)
+INSERT INTO
+    seats (id, room_id, number)
+VALUES
+    (1, 1, 1),
+    (2, 1, 2),
+    (3, 1, 3),
+    (4, 1, 4),
+    (5, 1, 5);
+
+-- Sièges pour la Salle 2 (ID 2)
+INSERT INTO
+    seats (id, room_id, number)
+VALUES
+    (6, 2, 1),
+    (7, 2, 2),
+    (8, 2, 3),
+    (9, 2, 4),
+    (10, 2, 5);
+
+-- Sièges pour la Salle 3 (ID 3)
+INSERT INTO
+    seats (id, room_id, number)
+VALUES
+    (11, 3, 1),
+    (12, 3, 2),
+    (13, 3, 3),
+    (14, 3, 4),
+    (15, 3, 5);
+
+INSERT INTO
+    sessions (movie_id, room_id, start_event)
+VALUES
+    -- Film 1 joue dans la Salle 1 à 14h
+    (1, 1, '2023-11-25 14:00:00'),
+    -- Film 1 joue dans la Salle 1 à 18h
+    (1, 1, '2023-11-25 18:00:00'),
+    -- Film 2 joue dans la Salle 2 (plus petite)
+    (2, 2, '2023-11-25 20:30:00'),
+    -- Film 3 joue dans la Salle VIP
+    (3, 3, '2023-11-26 21:00:00');
+
+-- Jean réserve pour la Session 1 (Salle 1) -> Il prend le siège 1 (qui est dans la salle 1)
+INSERT INTO
+    reservations (user_id, session_id, seat_id)
+VALUES
+    (2, 1, 1);
+
+-- Sophie réserve aussi pour la Session 1 (Salle 1) -> Elle prend le siège 2
+INSERT INTO
+    reservations (user_id, session_id, seat_id)
+VALUES
+    (3, 1, 2);
+
+-- Lucas réserve pour la Session 3 (Salle 2) -> Il doit prendre un siège de la salle 2 (ex: ID 6)
+INSERT INTO
+    reservations (user_id, session_id, seat_id)
+VALUES
+    (4, 3, 6);
+
+-- Jean revient le lendemain pour la Session 4 (Salle VIP) -> Il prend le siège 11
+INSERT INTO
+    reservations (user_id, session_id, seat_id)
+VALUES
+    (2, 4, 11);
