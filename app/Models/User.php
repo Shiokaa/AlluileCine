@@ -5,7 +5,8 @@ namespace App\Models;
 use Helpers\ResponseHandler;
 use PDOException;
 
-class User {
+class User
+{
 
     private $pdo;
 
@@ -17,12 +18,12 @@ class User {
     }
 
     /** * Crée un nouvel utilisateur en base de données.
-    *
-    * @param string $fullname Nom complet de l'utilisateur.
-    * @param string $email    Adresse email unique.
-    * @param string $password Mot de passe déjà haché.
-    * * @return array Retourne la réponse.
-    */
+     *
+     * @param string $fullname Nom complet de l'utilisateur.
+     * @param string $email    Adresse email unique.
+     * @param string $password Mot de passe déjà haché.
+     * * @return array Retourne la réponse.
+     */
     public function create(string $fullname, string $email, string $passwordHash): array
     {
         // Création de la query pour insérer un utilisateur dans la base de donnée
@@ -40,18 +41,19 @@ class User {
 
             // Retourne la réponse à true avec une message de succès
             return ResponseHandler::format(true, 'Succès', $id);
-            
-        } catch (PDOException $e) {
+
+        }
+        catch (PDOException $e) {
             // Retourne la réponse à false avec le code en erreur
             return ResponseHandler::format(false, 'Erreur : ' . $e->getCode());
         }
     }
 
     /** * Récupère un utilisateur via son addresse mail
-    *
-    * @param string $email Adresse mail de l'utilisateur.
-    * * @return array Retourne la réponse.
-    */
+     *
+     * @param string $email Adresse mail de l'utilisateur.
+     * * @return array Retourne la réponse.
+     */
     public function findByEmail(string $email): array
     {
         // Création de la query pour récupérer toutes les données d'un utilisateur via son email
@@ -66,17 +68,18 @@ class User {
 
             // Retourne la réponse à true avec une message de succès ainsi que les données de l'utilisateur
             return ResponseHandler::format(true, 'Succès', $statement->fetch());
-        } catch (PDOException $e) {
+        }
+        catch (PDOException $e) {
             // Retourne la réponse à false avec une message d'erreur
-            return ResponseHandler::format(false,'Erreur : '. $e->getMessage());
+            return ResponseHandler::format(false, 'Erreur : ' . $e->getMessage());
         }
     }
 
     /** * Récupère un utilisateur via son Id
-    *
-    * @param int $id Id de l'utilisateur.
-    * * @return array Retourne la réponse.
-    */
+     *
+     * @param int $id Id de l'utilisateur.
+     * * @return array Retourne la réponse.
+     */
     public function findById(int $id): array
     {
         // Création de la query pour récupérer toutes les données d'un utilisateur via son id
@@ -91,9 +94,50 @@ class User {
 
             // Retourne la réponse à true avec une message de succès ainsi que les données de l'utilisateur
             return ResponseHandler::format(true, 'Succès', $statement->fetch());
-        } catch (PDOException $e) {
-            // Retourne la réponse à false avec une message d'erreur
-            return ResponseHandler::format(false,'Erreur : '. $e->getMessage());
         }
+        catch (PDOException $e) {
+            // Retourne la réponse à false avec une message d'erreur
+            return ResponseHandler::format(false, 'Erreur : ' . $e->getMessage());
+        }
+    }
+    public function findAll(): array
+    {
+        // Création de la query pour récupérer toutes les données d'un utilisateur via son id
+        $sql = "SELECT * FROM users";
+
+        try {
+            // Prépare la requête
+            $statement = $this->pdo->prepare($sql);
+
+            // Exécute la requête préparé via les données envoyées
+            $statement->execute();
+
+            // Retourne la réponse à true avec une message de succès ainsi que les données de l'utilisateur
+            return ResponseHandler::format(true, 'Succès', $statement->fetchAll());
+        }
+        catch (PDOException $e) {
+            // Retourne la réponse à false avec une message d'erreur
+            return ResponseHandler::format(false, 'Erreur : ' . $e->getMessage());
+        }
+    }
+    public function delete(int $id): array
+    {
+        $sql = "DELETE FROM users WHERE id = ?";
+
+        try {
+
+            $statement = $this->pdo->prepare($sql);
+
+            $statement->execute([$id]);
+
+            return ResponseHandler::format(true, 'Succès', $statement->fetch());
+
+        }
+        catch (PDOException $e) {
+            // Retourne la réponse à false avec une message d'erreur
+            return ResponseHandler::format(false, 'Erreur : ' . $e->getMessage());
+        }
+
+
     }
 }

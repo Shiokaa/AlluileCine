@@ -26,6 +26,14 @@ class AuthMiddleware {
             exit;
         }
     }
+
+    public function requireAdmin()
+    {
+        if ($_SESSION['userRole'] != 'admin') {
+            header('Location: /');
+            exit;
+        }
+    }
 }
 
 ?>
