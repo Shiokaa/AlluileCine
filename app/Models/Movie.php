@@ -19,14 +19,23 @@ class Movie {
     *
     * @return array Retourne la réponse.
     */
-    public function findAll(): array
+    public function findAll($limit = null, $offset = null): array
     {
         // Création de la query pour récupérer tous les films
         $sql = 'SELECT * FROM movies';
+        
+        if ($limit !== null && $offset !== null) {
+            $sql .= ' LIMIT :limit OFFSET :offset';
+        }
 
         try {
             // Prépare la requête
             $statement = $this->pdo->prepare($sql);
+
+            if ($limit !== null && $offset !== null) {
+                $statement->bindValue(':limit', (int) $limit, \PDO::PARAM_INT);
+                $statement->bindValue(':offset', (int) $offset, \PDO::PARAM_INT);
+            }
 
             // Exécute la requête
             $statement->execute();
@@ -39,6 +48,17 @@ class Movie {
         } catch (PDOException $e) {
             // Retourne la réponse à false avec le message d'erreur
             return ResponseHandler::format('false', $e->getMessage());
+        }
+    }
+
+    public function countAll(): int
+    {
+        $sql = 'SELECT COUNT(*) FROM movies';
+        try {
+            $statement = $this->pdo->query($sql);
+            return (int) $statement->fetchColumn();
+        } catch (PDOException $e) {
+            return 0;
         }
     }
 
