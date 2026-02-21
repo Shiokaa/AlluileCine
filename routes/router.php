@@ -20,6 +20,8 @@ $router->get("/movies/{id}", ['App\Controllers\MovieController', 'showMoviePage'
 $router->get("/dashboard/delete/movie/{id}", ['App\Controllers\MovieController','handleMovieDelete']);
 $router->get("/dashboard/addMovie", ['App\Controllers\MovieController','showAddMovieForm']);
 $router->post("/dashboard/addMovie", ['App\Controllers\MovieController','handleAddMovie']);
+$router->get("/dashboard/movies/{id}/addSession", ['App\Controllers\MovieController','showAddSessionForm']);
+$router->post("/dashboard/movies/{id}/addSession", ['App\Controllers\MovieController','handleAddSession']);
 /* ------------------------------- */
 
 /* -------- Routage home --------- */
