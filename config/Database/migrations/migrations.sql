@@ -50,7 +50,8 @@ CREATE TABLE
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         delete_at TIMESTAMP NULL DEFAULT NULL,
         FOREIGN KEY (movie_id) REFERENCES movies (id) ON DELETE CASCADE,
-        FOREIGN KEY (room_id) REFERENCES rooms (id) ON DELETE CASCADE
+        FOREIGN KEY (room_id) REFERENCES rooms (id) ON DELETE CASCADE,
+        UNIQUE (room_id, start_event)
     );
 
 CREATE TABLE
