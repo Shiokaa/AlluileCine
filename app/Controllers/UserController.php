@@ -107,6 +107,23 @@ class UserController {
         if ($response['status'] && password_verify($passwordInput, $response['data']['password_hash'])){
             $_SESSION['userId'] = $response['data']['id'];
             $_SESSION['userRole'] = $response['data']['role'];
+            $_SESSION['last_activity'] = time();
+
+            if (isset($_POST['remember_me'])) {
+                $_SESSION['remember_me'] = true;
+                // Allonge la durée de vie du cookie de session à 30 jours
+                $cookieParams = session_get_cookie_params();
+                setcookie(
+                    session_name(), 
+                    session_id(), 
+                    time() + 30 * 24 * 3600, 
+                    $cookieParams['path'], 
+                    $cookieParams['domain'], 
+                    $cookieParams['secure'], 
+                    $cookieParams['httponly']
+                );
+            }
+
             header('Location: /');
             exit;
         } else {
@@ -129,6 +146,15 @@ class UserController {
         // Détruit la session
         session_destroy();
         
+        // Supprime le cookie de session si 'remember_me' avait modifié sa durée
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+
         //Renvoie vers la page /login et quitte la fonction
         header('Location: /login');
         exit;
