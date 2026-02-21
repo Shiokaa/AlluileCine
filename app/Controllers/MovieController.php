@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Movie;
+use App\Models\Room;
 use App\Models\Session;
 use Config\Database\Database;
 use App\Middlewares\AuthMiddleware;
@@ -12,6 +13,7 @@ class MovieController {
 
     private $movieModel;
     private $sessionModel;
+    private $roomModel;
     private $authMiddleware;
     private $tmdbService;
 
@@ -21,6 +23,7 @@ class MovieController {
         $this->authMiddleware = new AuthMiddleware();
         $this->tmdbService = new TmdbService();
         $this->sessionModel = new Session($db);
+        $this->roomModel = new Room($db);
     }
 
     public function showMoviePage(int $id)
@@ -129,4 +132,58 @@ class MovieController {
             exit;
         }
     } 
+
+    public function showAddSessionForm(int $id)
+    {
+        $this->authMiddleware->requireAdmin();
+
+        $movieResponse = $this->movieModel->findById($id);
+        $movie = $movieResponse['data'] ?? null;
+
+        if (!$movie) {
+            header('Location: /dashboard');
+            exit;
+        }
+
+        $roomResponse = $this->roomModel->findAll();
+        $rooms = $roomResponse['data'] ?? [];
+
+        $existingSessionsResponse = $this->sessionModel->getMovieSessionsDetails($id);
+        $existingSessions = $existingSessionsResponse['data'] ?? [];
+
+        include __DIR__ . "/../Views/addSession.php";
+    }
+
+    public function handleAddSession(int $id)
+    {
+        $this->authMiddleware->requireAdmin();
+
+        if (empty($_POST['room_id']) || empty($_POST['start_event'])) {
+            $_SESSION['error'] = "Veuillez remplir tous les champs !";
+            header("Location: /dashboard/movies/$id/addSession");
+            exit;
+        }
+
+        $roomId = (int)$_POST['room_id'];
+        $startEvent = str_replace('T', ' ', $_POST['start_event']);
+
+        $checkResponse = $this->sessionModel->checkExists($roomId, $startEvent);
+        if ($checkResponse['status'] === true && $checkResponse['data'] === true) {
+            $_SESSION['error'] = "Une séance est déjà programmée dans cette salle à cette heure.";
+            header("Location: /dashboard/movies/$id/addSession");
+            exit;
+        }
+
+        $response = $this->sessionModel->create($id, $roomId, $startEvent);
+
+        if ($response['status'] === true) {
+            $_SESSION['message'] = "Séance ajoutée avec succès.";
+            header('Location: /dashboard');
+            exit;
+        } else {
+            $_SESSION['error'] = "Erreur lors de l'ajout de la séance.";
+            header("Location: /dashboard/movies/$id/addSession");
+            exit;
+        }
+    }
 }
