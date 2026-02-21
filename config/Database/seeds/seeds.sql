@@ -14,103 +14,143 @@ INSERT INTO
 VALUES
     (
         'Anaconda',
-        'Une équipe de tournage s\'aventure dans la forêt amazonienne et se retrouve traquée par un serpent géant.',
-        'Action, Horreur',
-        'Luis Llosa',
-        'Jennifer Lopez, Ice Cube, Jon Voight',
-        89,
-        'anaconda.jpg',
-        '1997-04-11'
+        'Doug et Griff sont amis d''enfance et partagent depuis toujours un objectif un peu fou : réaliser leur propre remake d''Anaconda en plein cœur de l''Amazonie. Mais le rêve vire rapidement au cauchemar lorsqu''un véritable serpent géant fait son apparition et transforme leur plateau déjà chaotique en un piège mortel. Le film qu''ils mourraient d''envie de faire… va vraiment devenir mortel !',
+        'Aventure, Comédie, Horreur',
+        'Tom Gormican',
+        'Jack Black, Paul Rudd, Steve Zahn, Thandiwe Newton, Daniela Melchior',
+        100,
+        'https://image.tmdb.org/t/p/w500/5EbKjIowNw5yExzrhvu231GFVCf.jpg',
+        '2025-12-24'
     ),
     (
         'Interstellar',
-        'Un groupe d\'explorateurs utilise une faille spatio-temporelle pour repousser les limites humaines et partir à la conquête des distances astronomiques dans un voyage interstellaire.',
-        'Science-fiction, Drame',
+        'Dans un futur proche, face à une Terre exsangue, un groupe d''explorateurs utilise un vaisseau interstellaire pour franchir un trou de ver permettant de parcourir des distances jusque‐là infranchissables. Leur but : trouver un nouveau foyer pour l''humanité.',
+        'Aventure, Drame, Science-Fiction',
         'Christopher Nolan',
-        'Matthew McConaughey, Anne Hathaway, Jessica Chastain',
+        'Matthew McConaughey, Anne Hathaway, Michael Caine, Jessica Chastain, Casey Affleck',
         169,
-        'interstellar.jpg',
+        'https://image.tmdb.org/t/p/w500/1pnigkWWy8W032o9TKDneBa3eVK.jpg',
         '2014-11-05'
     ),
     (
         'Jujutsu Kaisen 0',
-        'Yuta Okkotsu, un lycéen nerveux, s\'inscrit dans la mystérieuse école d\'exorcisme de Tokyo sous la tutelle de Satoru Gojo.',
-        'Animation, Action',
-        'Sunghoo Park',
-        'Megumi Ogata, Kana Hanazawa, Mikako Komatsu',
+        'Lorsqu''il était enfant, Yuta Okkotsu a vu son amie Rika Orimoto perdre la vie dans un terrible accident. Depuis, Rika vient hanter Yuta qui a même souhaité sa propre mort après avoir souffert des années de cette malédiction. Jusqu''au jour où le plus puissant des exorcistes, Satoru Gojo, l''accueille dans l''école d''exorcisme de Tokyo. Tandis que Yuta trouve enfin un nouveau sens à sa vie, une menace plane sur le monde. En effet, quelqu''un projette de déchaîner un millier de malédictions sur Shinjuku et Kyoto pour exterminer tous les non-exorcistes…',
+        'Animation, Action, Fantastique',
+        '박성후',
+        '緒方恵美, Kana Hanazawa, Yūichi Nakamura, Takahiro Sakurai, Mikako Komatsu',
         105,
-        'jujutsu_kaisen.jpg',
+        'https://image.tmdb.org/t/p/w500/jW4OW6ySAtP40BzUWgVmsApqyaS.jpg',
         '2021-12-24'
     ),
     (
         'Scream 7',
-        'Le nouveau chapitre de la franchise slasher emblématique.',
-        'Horreur, Thriller',
-        'Christopher Landon',
-        'Neve Campbell, Courteney Cox',
-        120,
-        'scream_7.jpg',
-        '2025-10-31'
+        'Lorsqu''un nouveau Ghostface surgit dans la paisible ville où Sidney Prescott a reconstruit sa vie, ses pires cauchemars refont surface. Alors que sa fille devient la prochaine cible, Sidney n''a d''autre choix que de reprendre le combat. Déterminée à protéger les siens, elle doit alors affronter les démons de son passé pour tenter de mettre fin une bonne fois pour toutes au bain de sang.',
+        'Horreur, Mystère, Crime',
+        'Kevin Williamson',
+        'Neve Campbell, Courteney Cox, Isabel May, Jasmin Savoy Brown, Mason Gooding',
+        114,
+        'https://image.tmdb.org/t/p/w500/5LjnIdBqsGKftMuFmDQytkTeNOG.jpg',
+        '2026-02-25'
     ),
     (
         'Zootopie 2',
-        'Le duo de choc Judy et Nick se retrouve pour de nouvelles enquêtes au cœur de la métropole animalière.',
-        'Animation, Aventure',
-        'Byron Howard',
-        'Ginnifer Goodwin, Jason Bateman',
-        100,
-        'zootopie_2.jpg',
+        'Judy Hopps et Nick Wilde explorent à nouveau Zootopie, entre mystères, rires et rencontres inattendues. À travers chaque rue et chaque instant, ils découvrent que l''amitié et la curiosité transforment le quotidien en moments magiques.',
+        'Animation, Comédie, Aventure, Familial, Mystère',
+        'Jared Bush',
+        'Ginnifer Goodwin, Jason Bateman, Ke Huy Quan, Fortune Feimster, Andy Samberg',
+        108,
+        'https://image.tmdb.org/t/p/w500/hBI7Wrps6tDjhEzBxJgoPLhbmT1.jpg',
         '2025-11-26'
     ),
     (
         'The Tank',
-        'Après avoir hérité d\'une propriété côtière abandonnée, une famille libère accidentellement une créature ancienne qui terrorisait la région depuis des générations.',
-        'Horreur, Thriller',
-        'Scott Walker',
-        'Luciane Buchanan, Matt Whelan',
-        100,
-        'the_tank.jpg',
-        '2023-04-25'
+        'Front de l''Est, 1943 : l''équipage d''un char Tigre allemand se voit confier une dangereuse mission loin derrière les lignes de front âprement disputées. Durant leur traversée de ce no man''s land, ils doivent affronter l''ennemi ainsi que leurs propres démons.',
+        'Guerre, Action, Drame',
+        'Dennis Gansel',
+        'Laurence Rupp, David Schütter, Sebastian Urzendowsky, Leonard Kunz, Yoran Leicher',
+        117,
+        'https://image.tmdb.org/t/p/w500/s8rCTOHsyM9vylRtpuQocVNQ5wO.jpg',
+        '2025-09-18'
     ),
     (
         'Twisted',
-        'Une inspectrice de police dont les ex-petits amis sont assassinés devient la principale suspecte de l\'enquête.',
-        'Thriller, Policier',
-        'Philip Kaufman',
-        'Ashley Judd, Samuel L. Jackson',
-        97,
-        'twisted.jpg',
-        '2004-02-27'
+        'Deux milléniaux gagnent rapidement de l''argent en louant d''incroyables appartements new-yorkais qui ne leur appartiennent pas à des personnes qui ne se doutent pas qu''elles se font escroquer. L''arnaque fonctionne à merveille jusqu''à ce qu''ils tombent sur un propriétaire d''appartement qui cache un sombre secret et qui retourne la situation à leur détriment.',
+        'Horreur, Thriller',
+        'Darren Lynn Bousman',
+        'Djimon Hounsou, Lauren LaVera, Mia Healey, Neal McDonough, Alicia Witt',
+        93,
+        'https://image.tmdb.org/t/p/w500/AkRiuvV7R46xfMqUJWKyJ1fuSXh.jpg',
+        '2026-02-06'
     ),
     (
         'Primate',
-        'Un documentaire saisissant sur la vie des primates dans leur habitat naturel.',
-        'Documentaire',
-        'Inconnu',
-        'Narrateur inconnu',
-        90,
-        'primate.jpg',
-        '2024-01-01'
+        'Au lieu de rimer avec plages et retrouvailles, le retour de Lucy sur son île tropicale natale tourne au cauchemar lorsque le chimpanzé de la famille, d''une intelligence exceptionnelle, sombre dans une frénésie enragée. La nuit se mue alors en un chaos terrifiant. En l''absence de son père et sans aucun secours possible, ce paradis devient une prison et Lucy et ses amis doivent affronter un prédateur mortel en qui ils avaient autrefois toute confiance.',
+        'Horreur, Thriller',
+        'Johannes Roberts',
+        'Johnny Sequoyah, Jessica Alexander, Troy Kotsur, Victoria Wyant, Gia Hunter',
+        89,
+        'https://image.tmdb.org/t/p/w500/HtXHAH4PQjpw2RLsIrHGbeng1n.jpg',
+        '2026-01-01'
     ),
     (
         'Hamnet',
-        'L\'histoire de la courte vie du fils de Shakespeare, Hamnet, et l\'impact de sa mort sur la famille.',
-        'Drame, Historique',
+        'Angleterre, 1580. Un professeur de latin fauché, fait la connaissance d''Agnes, jeune femme à l''esprit libre. Fascinés l''un par l''autre, ils entament une liaison fougueuse avant de se marier et d''avoir trois enfants. Tandis que Will tente sa chance comme dramaturge à Londres, Agnes assume seule les tâches domestiques. Lorsqu''un drame se produit, le couple, autrefois profondément uni, vacille. Mais c''est de leur épreuve commune que naîtra l''inspiration d''un chef d''œuvre universel.',
+        'Drame, Romance, Histoire',
         'Chloé Zhao',
-        'Paul Mescal, Jessie Buckley',
-        120,
-        'hamnet.jpg',
-        '2025-01-01'
+        'Jessie Buckley, Paul Mescal, Emily Watson, Joe Alwyn, Jacobi Jupe',
+        125,
+        'https://image.tmdb.org/t/p/w500/slwXcH3iTRUe9ywOa4teTSzAGeB.jpg',
+        '2025-11-26'
     ),
     (
         'David',
-        'L\'histoire biblique du roi David, de berger à monarque légendaire.',
-        'Action, Historique',
-        'Inconnu',
-        'Inconnu',
-        110,
-        'david.jpg',
-        '2025-01-01'
+        'Des chants du cœur de sa mère aux murmures d''un Dieu fidèle, l''histoire de David commence dans une dévotion silencieuse. Lorsque le géant Goliath se lève pour terroriser une nation, un jeune berger armé uniquement d''une fronde, de quelques pierres et d''une foi inébranlable s''avance. Poursuivi par le pouvoir et animé par un but précis, son parcours met à l''épreuve les limites de la loyauté, de l''amour et du courage, et culmine dans une bataille qui ne vise pas seulement la couronne, mais aussi l''âme d''un royaume.',
+        'Animation, Familial, Drame',
+        'Phil Cunningham',
+        'Brandon Engman, Brian Stivale, Shahar Taboch, Aaron Tavaler, Hector',
+        109,
+        'https://image.tmdb.org/t/p/w500/bESlrLOrsQ9gKzaGQGHXKOyIUtX.jpg',
+        '2025-12-14'
+    ),
+    (
+        'Avatar : De feu et de cendres',
+        'Après la mort de Neteyam, Jake et Neytiri affrontent leur chagrin tout en faisant face au Peuple des Cendres, une tribu Na''vi redoutable menée par le fougueux Varang, alors que le conflit sur Pandora s''intensifie et qu''une nouvelle quête morale s''amorce.',
+        'Science-Fiction, Aventure, Fantastique',
+        'James Cameron',
+        'Sam Worthington, Zoe Saldaña, Sigourney Weaver, Stephen Lang, Oona Chaplin',
+        198,
+        'https://image.tmdb.org/t/p/w500/5BnOt0PRymp5mXuoKv1unQ9x8I8.jpg',
+        '2025-12-17'
+    ),
+    (
+        'Avatar',
+        'Un marine paraplégique, envoyé sur la lune Pandora pour une mission unique, est tiraillé entre suivre ses ordres et protéger le monde qu''il considère dorénavant comme le sien.',
+        'Action, Aventure, Fantastique, Science-Fiction',
+        'James Cameron',
+        'Sam Worthington, Zoe Saldaña, Sigourney Weaver, Stephen Lang, Michelle Rodriguez',
+        166,
+        'https://image.tmdb.org/t/p/w500/v5Y8pVwJK68SKQQ1GRbIB1hkPDy.jpg',
+        '2009-12-16'
+    ),
+    (
+        'GOAT : Rêver plus haut',
+        'Will est un petit bouc avec de grands rêves. Lorsqu''il décroche une chance inespérée de rejoindre la ligue professionnelle de "roarball", un sport ultra-intense réservé aux bêtes les plus rapides et féroces, il entend bien saisir l''opportunité. Problème : ses nouveaux coéquipiers ne sont pas vraiment ravis d''avoir un "petit" dans l''équipe. Mais Will est prêt à tout pour changer les règles du jeu.',
+        'Animation, Comédie, Familial, Action',
+        'Tyree Dillihay',
+        'Caleb McLaughlin, Gabrielle Union, Stephen Curry, Aaron Pierre, Nicola Coughlan',
+        100,
+        'https://image.tmdb.org/t/p/w500/9wwbYnU3HfAYqdjbFMhy2a8HYvr.jpg',
+        '2026-02-11'
+    ),
+    (
+        'Venom',
+        'Des symbiotes débarquent sur la Terre, parmi eux, Venom, qui va s''allier avec Eddie Brock. De son côté, un puissant scientifique tente de faire évoluer l''humanité avec les symbiotes, le duo d''anti‐héros va devoir tout faire pour l''arrêter !',
+        'Science-Fiction, Action',
+        'Ruben Fleischer',
+        'Tom Hardy, Michelle Williams, Riz Ahmed, Scott Haze, Reid Scott',
+        112,
+        'https://image.tmdb.org/t/p/w500/vVusHIRlyyFVS42XnqZso2wGKr.jpg',
+        '2018-09-28'
     );
 
 INSERT INTO
@@ -119,25 +159,25 @@ VALUES
     (
         'Admin Alluile',
         'admin@alluilecine.fr',
-        'password123',
+        '$2y$10$ZftpH7UUfDxCEpyMAsk67u8Ed6Y.sv9q.8jNyGKQiSl4qWWZRdgnW',
         'admin'
     ),
     (
         'Jean Dupont',
         'jean.dupont@email.com',
-        'password123',
+        '$2y$10$ZftpH7UUfDxCEpyMAsk67u8Ed6Y.sv9q.8jNyGKQiSl4qWWZRdgnW',
         'user'
     ),
     (
         'Sophie Martin',
         'sophie.martin@email.com',
-        'password123',
+        '$2y$10$ZftpH7UUfDxCEpyMAsk67u8Ed6Y.sv9q.8jNyGKQiSl4qWWZRdgnW',
         'user'
     ),
     (
         'Lucas Bernard',
         'lucas.bernard@email.com',
-        'password123',
+        '$2y$10$ZftpH7UUfDxCEpyMAsk67u8Ed6Y.sv9q.8jNyGKQiSl4qWWZRdgnW',
         'user'
     );
 
@@ -177,39 +217,3 @@ VALUES
     (13, 3, 3),
     (14, 3, 4),
     (15, 3, 5);
-
-INSERT INTO
-    sessions (movie_id, room_id, start_event)
-VALUES
-    -- Film 1 joue dans la Salle 1 à 14h
-    (1, 1, '2023-11-25 14:00:00'),
-    -- Film 1 joue dans la Salle 1 à 18h
-    (1, 1, '2023-11-25 18:00:00'),
-    -- Film 2 joue dans la Salle 2 (plus petite)
-    (2, 2, '2023-11-25 20:30:00'),
-    -- Film 3 joue dans la Salle VIP
-    (3, 3, '2023-11-26 21:00:00');
-
--- Jean réserve pour la Session 1 (Salle 1) -> Il prend le siège 1 (qui est dans la salle 1)
-INSERT INTO
-    reservations (user_id, session_id, seat_id)
-VALUES
-    (2, 1, 1);
-
--- Sophie réserve aussi pour la Session 1 (Salle 1) -> Elle prend le siège 2
-INSERT INTO
-    reservations (user_id, session_id, seat_id)
-VALUES
-    (3, 1, 2);
-
--- Lucas réserve pour la Session 3 (Salle 2) -> Il doit prendre un siège de la salle 2 (ex: ID 6)
-INSERT INTO
-    reservations (user_id, session_id, seat_id)
-VALUES
-    (4, 3, 6);
-
--- Jean revient le lendemain pour la Session 4 (Salle VIP) -> Il prend le siège 11
-INSERT INTO
-    reservations (user_id, session_id, seat_id)
-VALUES
-    (2, 4, 11);
