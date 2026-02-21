@@ -33,26 +33,27 @@
             <section class="account-section">
                 <h2>Mes Dernières Réservations</h2>
                 <div class="reservations-preview">
-                    <div class="reservation-card">
-                        <div class="reservation-info">
-                            <div class="movie-title">Inception</div>
-                            <div class="reservation-date">24 Fév 2024 - 20:30</div>
-                        </div>
-                        <div class="reservation-status">
-                            <span class="status confirmed">Confirmé</span>
-                        </div>
-                    </div>
-
-                    <div class="reservation-card">
-                        <div class="reservation-info">
-                            <div class="movie-title">Dune: Part Two</div>
-                            <div class="reservation-date">15 Mar 2024 - 18:00</div>
-                        </div>
-                        
-                        <div class="reservation-status">
-                            <span class="status confirmed">Confirmé</span>
-                        </div>
-                    </div>
+                    <?php if (!empty($recentReservations)): ?>
+                        <?php foreach ($recentReservations as $res): ?>
+                            <div class="reservation-card">
+                                <div class="reservation-info">
+                                    <div class="movie-title"><?= htmlspecialchars($res['movie_title']) ?></div>
+                                    <div class="reservation-date">
+                                        <?= date('d M Y - H:i', strtotime($res['session_date'])) ?>
+                                    </div>
+                                    <div style="font-size: 0.85rem; color: #a0a0a0; margin-top: 5px;">
+                                        <i class="fas fa-door-open"></i> <?= htmlspecialchars($res['room_name']) ?> | 
+                                        <i class="fas fa-chair"></i> Siège <?= htmlspecialchars($res['seat_number']) ?>
+                                    </div>
+                                </div>
+                                <div class="reservation-status">
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p style="color: #a0a0a0; padding: 1rem 0;">Aucune réservation pour le moment.</p>
+                    <?php endif; ?>
 
                     <div style="margin-top: 1rem; text-align: center;">
                         <a href="/reservations" style="color: #e94560; font-size: 0.9rem; text-decoration: underline;">Voir tout l'historique</a>

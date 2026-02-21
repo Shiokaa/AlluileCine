@@ -22,6 +22,10 @@ $router->get("/dashboard/addMovie", ['App\Controllers\MovieController','showAddM
 $router->post("/dashboard/addMovie", ['App\Controllers\MovieController','handleAddMovie']);
 $router->get("/dashboard/movies/{id}/addSession", ['App\Controllers\MovieController','showAddSessionForm']);
 $router->post("/dashboard/movies/{id}/addSession", ['App\Controllers\MovieController','handleAddSession']);
+
+/* -------- Routage Reservation --------- */
+$router->get("/reservations", ['App\Controllers\ReservationController', 'showUserReservations']);
+$router->post("/reservation", ['App\Controllers\ReservationController', 'handleReservation']);
 /* ------------------------------- */
 
 /* -------- Routage home --------- */
