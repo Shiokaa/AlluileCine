@@ -30,10 +30,10 @@
                             <div class="movie-info">
                                 <h3 class="movie-title"><?= htmlspecialchars($m['title']) ?></h3>
                                 <div class="movie-actions">
-                                    <!-- Bouton modifier séances (inactif pour l'instant) -->
-                                    <button class="btn-action btn-sessions" type="button">
+                                    <!-- Bouton modifier séances -->
+                                    <a class="btn-action btn-sessions" href="/dashboard/movies/<?= $m['id'] ?>/addSession">
                                         <i class="fas fa-calendar-alt"></i>
-                                    </button>
+                                    </a>
                                     
                                     <!-- Bouton Delete Movie -->
                                     <a href="/dashboard/delete/movie/<?= $m['id'] ?>" class="btn-action btn-delete-card" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce film ?');">
