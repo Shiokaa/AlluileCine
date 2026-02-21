@@ -3,12 +3,14 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Models\Reservation;
 use Config\Database\Database;
 use App\Middlewares\AuthMiddleware;
 
 class UserController {
 
     private $userModel;
+    private $reservationModel;
     private $authMiddleware;
 
     /** Constructeur de la class UserController
@@ -18,6 +20,7 @@ class UserController {
     {
         $db = Database::getInstance()->getConnection();
         $this->userModel = new User($db); 
+        $this->reservationModel = new Reservation($db);
         $this->authMiddleware = new AuthMiddleware();
     }
 
@@ -135,9 +138,16 @@ class UserController {
     {
         $this->authMiddleware->requireAuth();
 
+        // Fetch User
         $response = $this->userModel->findById($_SESSION['userId']);
-
         $user = $response['data'];
+
+        // Fetch user's reservations
+        $resResponse = $this->reservationModel->findByUserId($_SESSION['userId']);
+        $reservations = $resResponse['data'] ?? [];
+        
+        // Take only the top 3 recent reservations for the summary page
+        $recentReservations = array_slice($reservations, 0, 3);
 
         include_once __DIR__ . "/../Views/account.php";
     }
