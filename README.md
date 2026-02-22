@@ -20,6 +20,8 @@ Application web de réservation de places de cinéma développée en PHP avec un
 - **Modification du mot de passe** — avec vérification de l'ancien mot de passe et confirmation
 - **Réservation** — sélection de séance via calendrier interactif (7 jours) avec attribution automatique de siège
 - **Historique** complet des réservations
+- **Page Contact** — liens vers les réseaux sociaux des membres de l'équipe (GitHub, LinkedIn, Portfolio, Email)
+- **Guide d'utilisation** — page dédiée décrivant le fonctionnement de l'application (comptes de test, gestion des séances, réservation)
 
 ### Administrateur
 - **Dashboard** — gestion des films et des utilisateurs
