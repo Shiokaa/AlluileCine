@@ -3,6 +3,7 @@
 <div class="register-container">
     <h2>Créer un compte</h2>
     <form action="/register" method="POST">
+        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?? '' ?>">
         <div class="form-group">
             <label for="firstname">Prénom</label>
             <input type="text" name="firstname" id="firstname" required>

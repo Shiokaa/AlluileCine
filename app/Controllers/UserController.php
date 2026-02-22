@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Controllers;
 
@@ -38,39 +39,47 @@ class UserController {
      */
     public function handleRegister()
     {
-        // On vérifie si les données du formulaire sont bien remplies
+        // Validation stricte du jeton CSRF de sécurité
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            $_SESSION['error'] = "Jeton CSRF invalide.";
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            exit;
+        }
+
+        // Vérification de la complétude stricte des champs du formulaire
         if (empty($_POST['firstname']) || empty($_POST['lastname']) || empty($_POST['email']) || empty($_POST['password'])) {
             $_SESSION['error'] = "Veuillez remplir tous les champs !";
             header('Location: /register');
             exit;
         }
 
-        // On vérifie que le mot de passe soit assez long
-        if (strlen($_POST['password']) <= 6) {
-            $_SESSION['error'] = "Mot de passe trop court (6 caractères minimum)";
+        // Contrôle de robustesse minimale du mot de passe
+        if (strlen($_POST['password']) < 8) {
+            $_SESSION['error'] = "Le mot de passe doit contenir au moins 8 caractères";
             header('Location: /register');
             exit;
         }
 
-        // On récupère les données de l'utilisateur via la variable global POST
+        // Formatage des données utilisateurs avant insertion (concatenation et hashage)
         $fullname = $_POST['lastname'] . " " . $_POST['firstname'];
         $email = $_POST['email'];
         $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-        // On envoie les données de l'utilisateur au model
+        // Exécution de l'insertion du nouvel utilisateur dans la base de données
         $response = $this->userModel->create($fullname, $email, $passwordHash);
 
+        // Analyse de la réponse d'insertion et redirection de retour adéquate
         if ($response['status']) {
-            header('Location: /login'); // Rediriger vers la connexion en cas de succès
+            header('Location: /login');
             exit;
         } else {
-            // Si code 1062 alors email déjà utilisé sinon c'est une erreur serveur inconnu
-            if ($response['message'] = "1062") {
-                $_SESSION['error'] = "Email déjà utilisé"; // !!!!!!!!! Très dangereux à remplacer par un envoie d'email
+            // Traitement de l'erreur si l'email est déjà utilisé (Code MYSQL 1062)
+            if ($response['message'] === "1062") {
+                $_SESSION['error'] = "Email déjà utilisé";
             } else {
                 $_SESSION['error'] = "Erreur serveur inattendu";
             }
-            header('Location: /register'); // Rediriger vers l'inscription en cas d'erreur
+            header('Location: /register');
             exit;
         }
     } 
@@ -89,29 +98,36 @@ class UserController {
      */
     public function handleLogin()
     {
-        // On vérifie si les données du formulaire sont bien remplies
+        // Contrôle de validité du jeton CSRF de connexion
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            $_SESSION['error'] = "Jeton CSRF invalide.";
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            exit;
+        }
+
+        // Validation de la présence des identifiants saisis
         if (empty($_POST['email']) || empty($_POST['password'])) {
             $_SESSION['error'] = "Veuillez remplir tous les champs !";
-            header('Location: /register');
+            header('Location: /login');
             exit;
         }
         
-        // On récupère les données de l'utilisateur via la variable global POST
+        // Assignation des variables transmises
         $email = $_POST['email'];
         $passwordInput = $_POST['password'];
 
-        // On envoie les données de l'utilisateur au model et on récupère la réponse
+        // Récupération de l'utilisateur existant en base de données
         $response = $this->userModel->findByEmail($email);
 
-        // On vérifie le status de la réponse et la validité du mot de passe envoyé par l'utilisateur
+        // Comparaison cryptographique du mot de passe avec le hash enregistré
         if ($response['status'] && password_verify($passwordInput, $response['data']['password_hash'])){
             $_SESSION['userId'] = $response['data']['id'];
             $_SESSION['userRole'] = $response['data']['role'];
             $_SESSION['last_activity'] = time();
 
+            // Gestion de la persistance de connexion si l'option est cochée
             if (isset($_POST['remember_me'])) {
                 $_SESSION['remember_me'] = true;
-                // Allonge la durée de vie du cookie de session à 30 jours
                 $cookieParams = session_get_cookie_params();
                 setcookie(
                     session_name(), 
@@ -124,9 +140,11 @@ class UserController {
                 );
             }
 
+            // Redirection système vers le hub après acceptation
             header('Location: /');
             exit;
         } else {
+            // Rejet logique et notification de l'erreur d'identification
             $_SESSION['error'] = "Email inconnu ou mauvais mot de passe";
             header('Location: /login');
             exit;
@@ -137,16 +155,14 @@ class UserController {
      */
     public function handleLogout()
     {
-        // Renvoie l'utilisateur vers le /login s'il essaye d'accéder à /logout sans être connecté
+        // Vérification du statut de connexion courant
         $this->authMiddleware->requireAuth();
 
-        // Supprime les variables de session
+        // Vidage puis destruction complète de l'objet de session
         session_unset();
-
-        // Détruit la session
         session_destroy();
         
-        // Supprime le cookie de session si 'remember_me' avait modifié sa durée
+        // Interruption forcée du cookie de session prolongée
         if (ini_get("session.use_cookies")) {
             $params = session_get_cookie_params();
             setcookie(session_name(), '', time() - 42000,
@@ -155,38 +171,48 @@ class UserController {
             );
         }
 
-        //Renvoie vers la page /login et quitte la fonction
+        // Renvoi de l'invité sur la page de connexion
         header('Location: /login');
         exit;
     }
 
     public function showAccountPage()
     {
+        // Vérification de la présence et de la légitimité de la session
         $this->authMiddleware->requireAuth();
 
-        // Fetch User
+        // Chargement intégral des métadonnées de l'utilisateur
         $response = $this->userModel->findById($_SESSION['userId']);
         $user = $response['data'];
 
-        // Fetch user's reservations
+        // Recherche et extraction des réservations existantes
         $resResponse = $this->reservationModel->findByUserId($_SESSION['userId']);
         $reservations = $resResponse['data'] ?? [];
         
-        // Take only the top 3 recent reservations for the summary page
+        // Isolation exclusive des 3 entrées les plus récentes pour l'aperçu
         $recentReservations = array_slice($reservations, 0, 3);
 
+        // Distribution des données calculées vers la modélisation de la vue
         include_once __DIR__ . "/../Views/account.php";
     }
 
     public function handleUserDelete(int $id)
     {
+        // Protection du point d'accès via filtrage administrateur
         $this->authMiddleware->requireAdmin();
 
+        // Validation de sécurité stricte du jeton
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            $_SESSION['error'] = "Jeton CSRF invalide.";
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            exit;
+        }
+
+        // Retrait complet et définitif de l'utilisateur de la base
         $this->userModel->delete($id);
 
+        // Recharge du tableau de bord affichant le nouvel état de la table
         header('Location: /dashboard');
         exit;
     }
 }
-
-?>

@@ -12,10 +12,10 @@
         <?php if ($response['status']): ?>
         <?php foreach($movies as $movie): ?>
             <div class="movie-card">
-                <img src="<?= $movie['cover_image'] ?>" alt="<?= $movie['title'] ?>" class="movie-poster">
+                <img src="<?= htmlspecialchars($movie['cover_image']) ?>" alt="<?= htmlspecialchars($movie['title']) ?>" class="movie-poster">
                 <div class="movie-info">
-                    <h3 class="movie-title"><?= $movie['title'] ?></h3>
-                    <div class="movie-genre"><?= $movie['genre'] ?></div>
+                    <h3 class="movie-title"><?= htmlspecialchars($movie['title']) ?></h3>
+                    <div class="movie-genre"><?= htmlspecialchars($movie['genre']) ?></div>
                     <div class="movie-duration">
                         <i class="fa-regular fa-clock"></i> <?= floor($movie['duration'] / 60) ?>h <?= str_pad($movie['duration'] % 60, 2, '0', STR_PAD_LEFT) ?>min
                     </div>
@@ -28,7 +28,7 @@
             </div>
         <?php endforeach; ?>
         <?php else: ?>
-                <p><?= $response['message'] ?></p>
+                <p><?= htmlspecialchars($response['message']) ?></p>
         <?php endif; ?>
     </div>
 

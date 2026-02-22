@@ -27,13 +27,20 @@ class AuthMiddleware {
         }
     }
 
+    /**
+     * Protège les pages admin : redirige vers /login si non connecté, vers / si non admin.
+     */
     public function requireAdmin()
     {
-        if ($_SESSION['userRole'] != 'admin') {
+        if (!isset($_SESSION['userId'])) {
+            $_SESSION['error'] = "Vous devez être connecté pour accéder à cette page.";
+            header('Location: /login');
+            exit;
+        }
+
+        if (!isset($_SESSION['userRole']) || $_SESSION['userRole'] !== 'admin') {
             header('Location: /');
             exit;
         }
     }
 }
-
-?>

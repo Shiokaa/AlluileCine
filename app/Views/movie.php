@@ -13,7 +13,7 @@
                 <span class="movie-duration">
                     <i class="fas fa-clock"></i> <?= htmlspecialchars($movie['duration']) ?> min
                 </span>
-                <span class="movie-release-date" style="color: #a0a0a0;">
+                <span class="movie-release-date">
                     <i class="fas fa-calendar-alt"></i> <?= htmlspecialchars($movie['release_date']) ?>
                 </span>
             </div>
@@ -34,7 +34,7 @@
             <div class="movie-start-time">
                 <h3>Prochaines séances</h3>
 
-                <!-- Date Carousel -->
+
                 <div class="date-carousel">
                     <?php if (!empty($calendarDates)): ?>
                         <?php foreach ($calendarDates as $index => $day): ?>
@@ -47,7 +47,7 @@
                     <?php endif; ?>
                 </div>
 
-                <!-- Sessions List -->
+
                 <div class="sessions-container">
                     <?php if (!empty($calendarDates)): ?>
                         <?php foreach ($calendarDates as $day): 
@@ -68,7 +68,7 @@
                                         </div>
                                     <?php endforeach; ?>
                                 <?php else: ?>
-                                    <p style="color: #a0a0a0; margin: 10px 0;">Aucune séance prévue pour ce jour.</p>
+                                    <p class="empty-sessions-msg">Aucune séance prévue pour ce jour.</p>
                                 <?php endif; ?>
                             </div>
                         <?php endforeach; ?>
@@ -78,6 +78,7 @@
 
             <div class="movie-detail-actions">
                 <form action="/reservation" method="POST" id="booking-form">
+                    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?? '' ?>">
                     <input type="hidden" name="session_id" id="session-id-input" value="">
                     <button type="submit" class="btn btn-book" id="btn-book">Réserver une séance</button>
                 </form>

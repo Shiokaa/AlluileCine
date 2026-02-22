@@ -1,28 +1,32 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
+use PDO;
 use Helpers\ResponseHandler;
 use PDOException;
 
 class Seat {
-    private $pdo;
+    private PDO $pdo;
 
-    public function __construct($db)
+    /** Constructeur de la class Seat
+     */
+    public function __construct(PDO $db)
     {
         $this->pdo = $db;
     }
 
-    /**
-     * Finds the first available seat in the room for a given session.
-     * Checks room capacity against the number of existing reservations.
-     * If capacity is not reached, finds the next available seat number,
-     * ensures it exists in the `seats` table, and returns its ID.
+    /** Permet de trouver un siège disponible et obtenir son Id
+     *
+     * @param int $sessionId Id de la séance.
+     * @param int $roomId Id de la salle.
+     * @return array Retourne la réponse contenant l'id du siège.
      */
-    public function findAvailableSeatId(int $sessionId, int $roomId)
+    public function findAvailableSeatId(int $sessionId, int $roomId): array
     {
         try {
-            // 1. Get Room capacity
+            // Requête isolant la jauge théorique maximale de la salle ciblée
             $capacityStmt = $this->pdo->prepare("SELECT capacity FROM rooms WHERE id = ?");
             $capacityStmt->execute([$roomId]);
             $capacityResult = $capacityStmt->fetch();
@@ -31,18 +35,18 @@ class Seat {
             }
             $capacity = (int)$capacityResult['capacity'];
 
-            // 2. Count existing reservations for this session
+            // Dénombrement exact des places déjà validées sur l'ensemble de la séance
             $countStmt = $this->pdo->prepare("SELECT COUNT(*) as count FROM reservations WHERE session_id = ?");
             $countStmt->execute([$sessionId]);
             $countResult = $countStmt->fetch();
             $reservedCount = (int)$countResult['count'];
 
-            // 3. Check if room is full
+            // Interruption prématurée du flux d'achat si le seuil capacitaire est atteint
             if ($reservedCount >= $capacity) {
                 return ResponseHandler::format(false, "Désolé, cette séance est complète.");
             }
 
-            // 4. Find the first seat number (1 to capacity) that is NOT reserved
+            // Extraction ciblée de la liste des numéros matricules de sièges déjà pris
             $reservedSeatsStmt = $this->pdo->prepare("
                 SELECT s.number 
                 FROM reservations r
@@ -52,6 +56,7 @@ class Seat {
             $reservedSeatsStmt->execute([$sessionId]);
             $reservedNumbers = $reservedSeatsStmt->fetchAll(\PDO::FETCH_COLUMN);
 
+            // Balayage itératif permettant de repérer le premier siège rendu libre physiquement
             $availableNumber = null;
             for ($i = 1; $i <= $capacity; $i++) {
                 if (!in_array($i, $reservedNumbers)) {
@@ -64,11 +69,12 @@ class Seat {
                 return ResponseHandler::format(false, "Désolé, cette séance est complète.");
             }
 
-            // 5. Ensure this seat number exists in the seats table for this room, if not create it
+            // Contrôle croisé validant que la base liste bien le siège concerné ou forçage de sa création
             $seatStmt = $this->pdo->prepare("SELECT id FROM seats WHERE room_id = ? AND number = ?");
             $seatStmt->execute([$roomId, $availableNumber]);
             $seatResult = $seatStmt->fetch();
 
+            // Rapprochement avec le schéma relationnel de la collection
             if ($seatResult) {
                 $seatId = $seatResult['id'];
             } else {
@@ -80,7 +86,8 @@ class Seat {
             return ResponseHandler::format(true, 'Siège disponible trouvé', $seatId);
 
         } catch (PDOException $e) {
-            return ResponseHandler::format(false, "Erreur lors de la recherche du siège : " . $e->getMessage());
+            error_log($e->getMessage());
+            return ResponseHandler::format(false, "Une erreur est survenue lors du traitement de votre demande.");
         }
     }
 }

@@ -1,4 +1,4 @@
-/* ===== RESERVATIONS PAGE ===== */
+
 .reservations-container {
     padding: 2rem;
     max-width: 1200px;
@@ -125,6 +125,13 @@
     color: #e94560;
     width: 16px;
     text-align: center;
+}
+
+.ticket-date-reserved {
+    margin-top: auto;
+    padding-top: 1rem;
+    font-size: 0.8rem;
+    color: #666;
 }
 
 .ticket-seats-row {

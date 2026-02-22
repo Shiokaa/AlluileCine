@@ -10,7 +10,7 @@
     </div>
 
     <div class="dashboard-grid">
-        <!-- Section Films -->
+
         <div class="dashboard-section">
             <div class="section-header">
                 <h2><i class="fas fa-film"></i> Films</h2>
@@ -30,15 +30,18 @@
                             <div class="movie-info">
                                 <h3 class="movie-title"><?= htmlspecialchars($m['title']) ?></h3>
                                 <div class="movie-actions">
-                                    <!-- Bouton modifier séances -->
+
                                     <a class="btn-action btn-sessions" href="/dashboard/movies/<?= $m['id'] ?>/addSession">
                                         <i class="fas fa-calendar-alt"></i>
                                     </a>
                                     
-                                    <!-- Bouton Delete Movie -->
-                                    <a href="/dashboard/delete/movie/<?= $m['id'] ?>" class="btn-action btn-delete-card" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce film ?');">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
+
+                                    <form action="/dashboard/delete/movie/<?= $m['id'] ?>" method="POST" class="form-delete-movie">
+                                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?? '' ?>">
+                                        <button type="submit" class="btn-action btn-delete-card" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce film ?');">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +52,7 @@
             </div>
         </div>
 
-        <!-- Section Utilisateurs -->
+
         <div class="dashboard-section">
             <div class="section-header">
                 <h2><i class="fas fa-users"></i> Utilisateurs</h2>
@@ -73,9 +76,12 @@
                                 </td>
                                 <td><?= htmlspecialchars($u['email']) ?></td>
                                 <td>
-                                    <a href="/dashboard/delete/user/<?= $u['id'] ?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">
-                                        <i class="fas fa-trash"></i> Supprimer
-                                    </a>
+                                    <form action="/dashboard/delete/user/<?= $u['id'] ?>" method="POST" class="form-delete-user">
+                                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?? '' ?>">
+                                        <button type="submit" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">
+                                            <i class="fas fa-trash"></i> Supprimer
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
