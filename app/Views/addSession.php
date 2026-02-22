@@ -1,11 +1,11 @@
 <?php include_once __DIR__ . '/partials/header.php'; ?>
 
-<div class="container" style="min-height: calc(100vh - 200px); padding-top: 2rem;">
+<div class="container page-container">
     <a href="/dashboard" class="btn-back"><i class="fas fa-arrow-left"></i> Retour au dashboard</a>
     
     <div class="add-session-layout">
         <div class="left-panel">
-            <h2 class="form-title" style="text-align: left; margin-bottom: 1.5rem;">Détails du Film</h2>
+            <h2 class="form-title form-title-left">Détails du Film</h2>
             
             <div class="movie-summary">
                 <img src="<?= htmlspecialchars($movie['cover_image']) ?>" alt="<?= htmlspecialchars($movie['title']) ?>" class="movie-summary-poster">
@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <h3 style="color: white; border-bottom: 1px solid #333; padding-bottom: 0.5rem; margin-top: 2rem;">Séances Programmées</h3>
+            <h3 class="sessions-header-title">Séances Programmées</h3>
             <?php if (!empty($existingSessions)): ?>
                 <ul class="sessions-list-container">
                     <?php foreach ($existingSessions as $es): ?>
@@ -36,7 +36,7 @@
                     <?php endforeach; ?>
                 </ul>
             <?php else: ?>
-                <p class="no-sessions-text" style="margin-top: 1rem;">Aucune séance existante pour ce film.</p>
+                <p class="no-sessions-text">Aucune séance existante pour ce film.</p>
             <?php endif; ?>
         </div>
         
@@ -58,6 +58,7 @@
             <?php endif; ?>
 
             <form action="/dashboard/movies/<?= $movie['id'] ?>/addSession" method="POST">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?? '' ?>">
                 <div class="form-group">
                     <label for="room_id">Salle</label>
                     <select name="room_id" id="room_id" class="form-control" required>

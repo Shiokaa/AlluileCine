@@ -16,9 +16,9 @@ class ResponseHandler {
     {
         // Renvoie une liste sous forme de clé valeur
         return [
-            'status'=> $status,
-            'message'=>$message,
-            'data'=> $data,
+            'status' => $status,
+            'message' => $message,
+            'data' => $data,
             'timestamp' => date('Y-m-d H:i:s')
         ];
     }

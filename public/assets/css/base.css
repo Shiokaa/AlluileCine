@@ -1,4 +1,4 @@
-/* ===== RESET & BASE ===== */
+
 * {
   margin: 0;
   padding: 0;
@@ -23,7 +23,7 @@ ul {
   list-style: none;
 }
 
-/* ===== MAIN CONTENT ===== */
+
 .main-content {
   flex: 1;
   max-width: 1200px;
@@ -41,4 +41,21 @@ ul {
   color: #ff6b81;
   font-size: 0.9rem;
   text-align: center;
+}
+
+.alert {
+  padding: 1rem;
+  border-radius: 6px;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.alert-danger {
+  background: rgba(229, 9, 20, 0.2);
+  border: 1px solid #e50914;
+}
+
+.alert-success {
+  background: rgba(40, 167, 69, 0.2);
+  border: 1px solid #28a745;
 }

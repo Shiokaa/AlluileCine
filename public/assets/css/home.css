@@ -1,4 +1,4 @@
-/* ===== HERO SECTION ===== */
+
 .hero {
   text-align: center;
   padding: 4rem 1rem;
@@ -25,7 +25,7 @@
   margin: 0 auto;
 }
 
-/* ===== MOVIES GRID ===== */
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -45,7 +45,7 @@
   gap: 2rem;
 }
 
-/* ===== MOVIE CARD ===== */
+
 .movie-card {
   background-color: #16213e;
   border-radius: 12px;
@@ -126,7 +126,7 @@
   background-color: #d63d56;
 }
 
-/* ===== PAGINATION ===== */
+
 .pagination {
   display: flex;
   justify-content: center;

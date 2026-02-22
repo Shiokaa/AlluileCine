@@ -8,28 +8,28 @@
             </div>
             <div class="account-info">
                 <h1>Mon Profil</h1>
-                <p class="email"><?= $user['email']?></p>
+                <p class="email"><?= htmlspecialchars($user['email'])?></p>
             </div>
         </div>
 
         <div class="account-sections">
-            <!-- Informations Personnelles Section -->
+
             <section class="account-section">
                 <h2>Informations Personnelles</h2>
                 <div class="account-details">
                     <div class="detail-group">
                         <span class="detail-label">Nom d'utilisateur</span>
-                        <span class="detail-value"><?= strtoupper($user['fullname'])?></span>
+                        <span class="detail-value"><?= htmlspecialchars(strtoupper($user['fullname']))?></span>
                     </div>
 
                     <div class="detail-group full-width">
                         <span class="detail-label">Email</span>
-                        <span class="detail-value"><?= $user['email']?></span>
+                        <span class="detail-value"><?= htmlspecialchars($user['email'])?></span>
                     </div>
                 </div>
             </section>
 
-            <!-- Dernières Réservations Section -->
+
             <section class="account-section">
                 <h2>Mes Dernières Réservations</h2>
                 <div class="reservations-preview">
@@ -41,7 +41,7 @@
                                     <div class="reservation-date">
                                         <?= date('d M Y - H:i', strtotime($res['session_date'])) ?>
                                     </div>
-                                    <div style="font-size: 0.85rem; color: #a0a0a0; margin-top: 5px;">
+                                    <div class="reservation-meta">
                                         <i class="fas fa-door-open"></i> <?= htmlspecialchars($res['room_name']) ?> | 
                                         <i class="fas fa-chair"></i> Siège <?= htmlspecialchars($res['seat_number']) ?>
                                     </div>
@@ -52,11 +52,11 @@
                             </div>
                         <?php endforeach; ?>
                     <?php else: ?>
-                        <p style="color: #a0a0a0; padding: 1rem 0;">Aucune réservation pour le moment.</p>
+                        <p class="no-reservations">Aucune réservation pour le moment.</p>
                     <?php endif; ?>
 
-                    <div style="margin-top: 1rem; text-align: center;">
-                        <a href="/reservations" style="color: #e94560; font-size: 0.9rem; text-decoration: underline;">Voir tout l'historique</a>
+                    <div class="view-all-container">
+                        <a href="/reservations" class="view-all-link">Voir tout l'historique</a>
                     </div>
                 </div>
             </section>

@@ -1,4 +1,4 @@
-/* ===== HEADER ===== */
+
 .site-header {
   background-color: #1a1a2e;
   border-bottom: 2px solid #e94560;
@@ -70,7 +70,7 @@
   color: #e94560 !important;
 }
 
-/* ===== BURGER BUTTON ===== */
+
 .burger-btn {
   display: none;
   flex-direction: column;
@@ -104,7 +104,7 @@
   transform: rotate(-45deg) translate(5px, -6px);
 }
 
-/* ===== RESPONSIVE (< lg / 1024px) ===== */
+
 @media (max-width: 1023px) {
   .burger-btn {
     display: flex;

@@ -1,4 +1,4 @@
-/* ===== MOVIE DETAIL PAGE ===== */
+
 .movie-detail-card {
   display: flex;
   background-color: #16213e;
@@ -60,6 +60,10 @@
   margin-bottom: 0;
 }
 
+.movie-release-date {
+  color: #a0a0a0;
+}
+
 .movie-description {
   margin-bottom: 3rem;
 }
@@ -99,6 +103,11 @@
   flex-wrap: wrap;
   gap: 0.8rem;
   margin-top: 1rem;
+}
+
+.empty-sessions-msg {
+  color: #a0a0a0;
+  margin: 10px 0;
 }
 
 .date-carousel {
@@ -190,7 +199,7 @@
   color: #fff;
 }
 
-/* ===== BOOKING HINT & SELECTION ===== */
+
 .booking-hint {
   color: #a0a0a0;
   font-size: 0.9rem;
@@ -218,7 +227,7 @@
   margin-right: 0.3rem;
 }
 
-/* ===== BOOKING BUTTON STATES ===== */
+
 .movie-detail-actions .btn-book {
   opacity: 0.5;
   cursor: not-allowed;

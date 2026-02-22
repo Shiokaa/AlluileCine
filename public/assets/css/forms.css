@@ -1,4 +1,4 @@
-/* ===== FORMS (Login / Register) ===== */
+
 .register-container,
 .login-container {
   max-width: 450px;
@@ -47,9 +47,27 @@
 }
 
 .form-group input:focus,
+.form-group input:focus,
 .form-group textarea:focus {
   outline: none;
   border-color: #e94560;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-direction: row;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+.checkbox-group label {
+  margin: 0;
+  font-weight: normal;
 }
 
 button[type="submit"] {
@@ -68,4 +86,42 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background-color: #c73a52;
+}
+
+.add-movie-container {
+  max-width: 600px;
+}
+
+.form-error {
+  color: #ff4d4d;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.form-success {
+  color: #4dff4d;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.btn-gradient-submit {
+  background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);
+  color: white;
+  border: none;
+  padding: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.form-footer-container {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.form-footer-link {
+  color: #a0a0a0;
+  font-size: 0.9rem;
 }

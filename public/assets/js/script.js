@@ -1,4 +1,4 @@
-// ===== BURGER MENU =====
+
 document.addEventListener("DOMContentLoaded", () => {
   const burgerBtn = document.querySelector(".burger-btn");
   const mainNav = document.querySelector(".main-nav");
@@ -13,5 +13,5 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   burgerBtn.addEventListener("click", toggleMenu);
-  overlay.addEventListener("click", toggleMenu);
+  if (overlay) overlay.addEventListener("click", toggleMenu);
 });

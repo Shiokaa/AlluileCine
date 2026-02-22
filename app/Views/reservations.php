@@ -7,14 +7,14 @@
     </div>
 
     <?php if (isset($_SESSION['error'])): ?>
-        <div class="alert alert-danger" style="background: rgba(229, 9, 20, 0.2); border: 1px solid #e50914; padding: 1rem; border-radius: 6px; color: white; margin-bottom: 2rem;">
+        <div class="alert alert-danger">
             <?= htmlspecialchars($_SESSION['error']) ?>
             <?php unset($_SESSION['error']); ?>
         </div>
     <?php endif; ?>
 
     <?php if (isset($_SESSION['message'])): ?>
-        <div class="alert alert-success" style="background: rgba(40, 167, 69, 0.2); border: 1px solid #28a745; padding: 1rem; border-radius: 6px; color: white; margin-bottom: 2rem;">
+        <div class="alert alert-success">
             <?= htmlspecialchars($_SESSION['message']) ?>
             <?php unset($_SESSION['message']); ?>
         </div>
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         
-                        <div style="margin-top: auto; padding-top: 1rem; font-size: 0.8rem; color: #666;">
+                        <div class="ticket-date-reserved">
                             Réservé le <?= date('d/m/Y', strtotime($ticket['reserved_at'])) ?>
                         </div>
                     </div>

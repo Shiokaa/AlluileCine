@@ -1,35 +1,59 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
+use PDO;
 use Helpers\ResponseHandler;
 use PDOException;
-use PDO;
 
 class Reservation {
-    private $pdo;
+    private PDO $pdo;
 
-    public function __construct($db)
+    /** Constructeur de la class Reservation
+     * Initialise la connexion à la base de données
+     */
+    public function __construct(PDO $db)
     {
         $this->pdo = $db;
     }
 
-    public function create(int $userId, int $sessionId, int $seatId)
+    /** Crée une nouvelle réservation
+     *
+     * @param int $userId Id de l'utilisateur.
+     * @param int $sessionId Id de la séance.
+     * @param int $seatId Id du siège.
+     * @return array Retourne la réponse formatée.
+     */
+    public function create(int $userId, int $sessionId, int $seatId): array
     {
+        // Élaboration de la requête SQL d'insertion de la réservation
         $sql = "INSERT INTO reservations (user_id, session_id, seat_id) VALUES (?, ?, ?)";
 
         try {
+            // Préparation de l'expression SQL via PDO
             $statement = $this->pdo->prepare($sql);
+            
+            // Exécution et sauvegarde des clés associées
             $statement->execute([$userId, $sessionId, $seatId]);
 
+            // Renvoi de la confirmation d'enregistrement positif
             return ResponseHandler::format(true, 'Réservation confirmée avec succès !');
         } catch (PDOException $e) {
-            return ResponseHandler::format(false, "Erreur lors de la réservation : " . $e->getMessage());
+            error_log($e->getMessage());
+            // Transfert de l'erreur interceptée
+            return ResponseHandler::format(false, "Une erreur est survenue lors du traitement de votre demande.");
         }
     }
 
-    public function findByUserId(int $userId)
+    /** Récupère les réservations d'un utilisateur
+     *
+     * @param int $userId Id de l'utilisateur.
+     * @return array Retourne les réservations formatées.
+     */
+    public function findByUserId(int $userId): array
     {
+        // Spécification de la requête de jointure ciblée sur un seul utilisateur
         $sql = "
             SELECT 
                 r.id as reservation_id,
@@ -56,7 +80,8 @@ class Reservation {
 
             return ResponseHandler::format(true, 'Succès', $reservations);
         } catch (PDOException $e) {
-            return ResponseHandler::format(false, $e->getMessage());
+            error_log($e->getMessage());
+            return ResponseHandler::format(false, "Une erreur est survenue lors du traitement de votre demande.");
         }
     }
 }
