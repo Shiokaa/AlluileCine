@@ -1,0 +1,127 @@
+
+.register-container,
+.login-container {
+  max-width: 450px;
+  margin: 2rem auto;
+  background-color: #16213e;
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid #1a1a40;
+}
+
+.register-container h2,
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #e94560;
+  font-size: 1.6rem;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background-color: #0f3460;
+  color: #f0f0f0;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-group input:focus,
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #e94560;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-direction: row;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+.checkbox-group label {
+  margin: 0;
+  font-weight: normal;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 0.8rem;
+  margin-top: 1rem;
+  background-color: #e94560;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button[type="submit"]:hover {
+  background-color: #c73a52;
+}
+
+.add-movie-container {
+  max-width: 600px;
+}
+
+.form-error {
+  color: #ff4d4d;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.form-success {
+  color: #4dff4d;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.btn-gradient-submit {
+  background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);
+  color: white;
+  border: none;
+  padding: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.form-footer-container {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.form-footer-link {
+  color: #a0a0a0;
+  font-size: 0.9rem;
+}

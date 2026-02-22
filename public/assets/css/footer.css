@@ -1,0 +1,51 @@
+
+.site-footer {
+  background-color: #1a1a2e;
+  border-top: 2px solid #1a1a40;
+  padding: 1.5rem 2rem;
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  color: #666;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.social-links {
+  margin-top: 0.5rem;
+}
+
+.github-link-footer {
+  font-size: 1.5rem;
+  color: #888;
+  transition: all 0.2s;
+}
+
+.github-link-footer:hover {
+  color: #fff;
+  transform: scale(1.1);
+  display: inline-block;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.footer-contact-link {  
+  color: #888;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.footer-contact-link:hover {
+  color: #e94560;
+}
