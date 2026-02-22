@@ -12,6 +12,8 @@ $router->get("/login", ['App\Controllers\UserController', 'showLoginForm']);
 $router->post("/login", ['App\Controllers\UserController','handleLogin']);
 $router->get("/logout", ['App\Controllers\UserController', 'handleLogout']);
 $router->get("/account", ['App\Controllers\UserController', 'showAccountPage']);
+$router->post("/account/update-profile", ['App\Controllers\UserController','handleUpdateProfile']);
+$router->post("/account/update-password", ['App\Controllers\UserController','handleUpdatePassword']);
 $router->post("/dashboard/delete/user/{id}", ['App\Controllers\UserController','handleUserDelete']);
 /* ------------------------------- */
 
