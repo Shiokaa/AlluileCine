@@ -1,0 +1,176 @@
+
+.guide-page {
+  padding: 2rem 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.guide-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #e94560, #c23152);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.guide-subtitle {
+  text-align: center;
+  color: #888;
+  font-size: 1.05rem;
+  margin-bottom: 3rem;
+}
+
+.guide-section {
+  margin-bottom: 3rem;
+}
+
+.guide-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.2rem;
+}
+
+.guide-section-header i {
+  font-size: 1.3rem;
+  color: #e94560;
+}
+
+.guide-section-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #f0f0f0;
+}
+
+.guide-card {
+  background: #1a1a2e;
+  border: 1px solid rgba(233, 69, 96, 0.12);
+  border-radius: 14px;
+  padding: 1.8rem;
+}
+
+.guide-card-desc {
+  color: #aaa;
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+}
+
+.guide-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+  padding: 0.8rem 1rem;
+  background: rgba(255, 193, 7, 0.08);
+  border: 1px solid rgba(255, 193, 7, 0.25);
+  border-radius: 8px;
+  color: #f0c040;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.guide-warning i {
+  color: #ffc107;
+  margin-top: 2px;
+}
+
+.guide-accounts {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.guide-account {
+  flex: 1;
+  min-width: 220px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.account-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  width: fit-content;
+}
+
+.badge-admin {
+  background: rgba(233, 69, 96, 0.15);
+  color: #e94560;
+  border: 1px solid rgba(233, 69, 96, 0.3);
+}
+
+.badge-user {
+  background: rgba(40, 167, 69, 0.15);
+  color: #28a745;
+  border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
+.account-info p {
+  color: #bbb;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.account-info i {
+  color: #888;
+  font-size: 0.8rem;
+  width: 16px;
+  text-align: center;
+}
+
+.guide-steps-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.compact-step {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.step-number-sm {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e94560, #c23152);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compact-step p {
+  color: #ccc;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 680px) {
+  .guide-title {
+    font-size: 1.7rem;
+  }
+
+  .guide-accounts {
+    flex-direction: column;
+  }
+}
