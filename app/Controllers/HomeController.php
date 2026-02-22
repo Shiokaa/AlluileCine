@@ -46,4 +46,10 @@ class HomeController {
     public function showContactPage() {
         include_once __DIR__ . "/../Views/contact.php";
     }
+
+    /** Permet d'afficher la page du guide d'utilisation
+     */
+    public function showGuidePage() {
+        include_once __DIR__ . "/../Views/guide.php";
+    }
 }

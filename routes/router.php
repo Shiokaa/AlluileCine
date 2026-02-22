@@ -33,6 +33,7 @@ $router->post("/reservation", ['App\Controllers\ReservationController', 'handleR
 /* -------- Routage home --------- */
 $router->get("/", ['App\Controllers\HomeController', 'showHomePage']);
 $router->get("/contact", ['App\Controllers\HomeController', 'showContactPage']);
+$router->get("/guide", ['App\Controllers\HomeController', 'showGuidePage']);
 /* ------------------------------- */
 
 /* -------- Routage dashboard--------- */
