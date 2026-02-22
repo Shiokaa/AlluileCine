@@ -215,4 +215,102 @@ class UserController {
         header('Location: /dashboard');
         exit;
     }
+
+    /** Gère la modification du profil (nom et email)
+     */
+    public function handleUpdateProfile()
+    {
+        $this->authMiddleware->requireAuth();
+
+        // Validation du jeton CSRF
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            $_SESSION['error'] = "Jeton CSRF invalide.";
+            header('Location: /account');
+            exit;
+        }
+
+        // Vérification des champs requis
+        if (empty($_POST['firstname']) || empty($_POST['lastname']) || empty($_POST['email'])) {
+            $_SESSION['error'] = "Veuillez remplir tous les champs.";
+            header('Location: /account');
+            exit;
+        }
+
+        $fullname = $_POST['lastname'] . " " . $_POST['firstname'];
+        $email = $_POST['email'];
+
+        // Mise à jour en base de données
+        $response = $this->userModel->updateProfile($_SESSION['userId'], $fullname, $email);
+
+        if ($response['status']) {
+            $_SESSION['message'] = "Profil mis à jour avec succès.";
+        } else {
+            if ($response['message'] === "23000") {
+                $_SESSION['error'] = "Cet email est déjà utilisé par un autre compte.";
+            } else {
+                $_SESSION['error'] = "Erreur lors de la mise à jour du profil.";
+            }
+        }
+
+        header('Location: /account');
+        exit;
+    }
+
+    /** Gère la modification du mot de passe
+     */
+    public function handleUpdatePassword()
+    {
+        $this->authMiddleware->requireAuth();
+
+        // Validation du jeton CSRF
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            $_SESSION['error'] = "Jeton CSRF invalide.";
+            header('Location: /account');
+            exit;
+        }
+
+        // Vérification des champs requis
+        if (empty($_POST['current_password']) || empty($_POST['new_password']) || empty($_POST['confirm_password'])) {
+            $_SESSION['error'] = "Veuillez remplir tous les champs.";
+            header('Location: /account');
+            exit;
+        }
+
+        // Vérification que les deux nouveaux mots de passe correspondent
+        if ($_POST['new_password'] !== $_POST['confirm_password']) {
+            $_SESSION['error'] = "Les nouveaux mots de passe ne correspondent pas.";
+            header('Location: /account');
+            exit;
+        }
+
+        // Vérification de la longueur minimale
+        if (strlen($_POST['new_password']) < 8) {
+            $_SESSION['error'] = "Le nouveau mot de passe doit contenir au moins 8 caractères.";
+            header('Location: /account');
+            exit;
+        }
+
+        // Vérification du mot de passe actuel
+        $userResponse = $this->userModel->findById($_SESSION['userId']);
+        $user = $userResponse['data'];
+
+        if (!password_verify($_POST['current_password'], $user['password_hash'])) {
+            $_SESSION['error'] = "Le mot de passe actuel est incorrect.";
+            header('Location: /account');
+            exit;
+        }
+
+        // Hashage et mise à jour
+        $newHash = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
+        $response = $this->userModel->updatePassword($_SESSION['userId'], $newHash);
+
+        if ($response['status']) {
+            $_SESSION['message'] = "Mot de passe mis à jour avec succès.";
+        } else {
+            $_SESSION['error'] = "Erreur lors de la mise à jour du mot de passe.";
+        }
+
+        header('Location: /account');
+        exit;
+    }
 }
