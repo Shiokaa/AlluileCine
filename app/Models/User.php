@@ -149,4 +149,59 @@ class User
 
 
     }
+
+    /** Met à jour le nom et l'email d'un utilisateur
+     *
+     * @param int $id Id de l'utilisateur.
+     * @param string $fullname Nouveau nom complet.
+     * @param string $email Nouvel email.
+     * @return array Retourne la réponse.
+     */
+    public function updateProfile(int $id, string $fullname, string $email): array
+    {
+        // Élaboration de la requête de mise à jour ciblant le nom et l'email
+        $sql = "UPDATE users SET fullname = ?, email = ? WHERE id = ?";
+
+        try {
+            // Préparation de la requête paramétrisée via PDO
+            $statement = $this->pdo->prepare($sql);
+
+            // Exécution sécurisée avec les nouvelles données du profil
+            $statement->execute([$fullname, $email, $id]);
+
+            // Formatage d'un statut positif confirmant la modification
+            return ResponseHandler::format(true, 'Profil mis à jour avec succès.');
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            // Retour du code d'erreur PDO pour distinguer les cas (ex: 23000 = doublon email)
+            return ResponseHandler::format(false, (string) $e->getCode());
+        }
+    }
+
+    /** Met à jour le mot de passe d'un utilisateur
+     *
+     * @param int $id Id de l'utilisateur.
+     * @param string $passwordHash Nouveau mot de passe haché.
+     * @return array Retourne la réponse.
+     */
+    public function updatePassword(int $id, string $passwordHash): array
+    {
+        // Définition de la requête de modification du hash de mot de passe
+        $sql = "UPDATE users SET password_hash = ? WHERE id = ?";
+
+        try {
+            // Préparation de l'instruction sécurisée
+            $statement = $this->pdo->prepare($sql);
+
+            // Application du nouveau hash sur l'utilisateur ciblé
+            $statement->execute([$passwordHash, $id]);
+
+            // Confirmation de la mise à jour réussie
+            return ResponseHandler::format(true, 'Mot de passe mis à jour avec succès.');
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            // Retourne la réponse à false avec un message d'erreur
+            return ResponseHandler::format(false, "Une erreur est survenue lors du traitement de votre demande.");
+        }
+    }
 }
