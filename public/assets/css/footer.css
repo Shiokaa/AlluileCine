@@ -33,3 +33,19 @@
   transform: scale(1.1);
   display: inline-block;
 }
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.footer-contact-link {  
+  color: #888;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.footer-contact-link:hover {
+  color: #e94560;
+}

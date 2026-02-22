@@ -1,0 +1,133 @@
+
+.contact-page {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.contact-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #e94560, #c23152);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.contact-subtitle {
+  color: #888;
+  font-size: 1.05rem;
+  margin-bottom: 3rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-card {
+  background: #1a1a2e;
+  border: 1px solid rgba(233, 69, 96, 0.15);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(233, 69, 96, 0.12);
+}
+
+.contact-avatar {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.2rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e94560, #c23152);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.contact-name {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #f0f0f0;
+  margin-bottom: 0.3rem;
+}
+
+.contact-role {
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-socials {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #f0f0f0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.25s ease;
+}
+
+.social-link:hover {
+  transform: scale(1.15);
+}
+
+.social-github:hover {
+  background: #333;
+  border-color: #555;
+  color: #fff;
+}
+
+.social-linkedin:hover {
+  background: #0a66c2;
+  border-color: #0a66c2;
+  color: #fff;
+}
+
+.social-twitter:hover {
+  background: #1a1a1a;
+  border-color: #444;
+  color: #fff;
+}
+
+.social-portfolio:hover {
+  background: #e94560;
+  border-color: #e94560;
+  color: #fff;
+}
+
+.social-email:hover {
+  background: #c23152;
+  border-color: #c23152;
+  color: #fff;
+}
+
+@media (max-width: 680px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-title {
+    font-size: 1.7rem;
+  }
+}
