@@ -40,4 +40,10 @@ class HomeController {
         // Transmission des données et rendu de la page d'accueil
         include_once __DIR__ . "/../Views/home.php";
     }
+
+    /** Permet d'afficher la page de contact
+     */
+    public function showContactPage() {
+        include_once __DIR__ . "/../Views/contact.php";
+    }
 }
